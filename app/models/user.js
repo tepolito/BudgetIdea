@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
     local            : {
         email        : String,
         password     : String,
-        income       : Number 
+        income       : {type:Number, default:0}
     },
     facebook         : {
         id           : String,
@@ -29,7 +29,7 @@ var userSchema = mongoose.Schema({
         name         : String
     },
 
-    income           : Number 
+    income           : {type:Number, default:0} 
 
 });
 
