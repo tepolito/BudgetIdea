@@ -194,10 +194,10 @@ app.post('/addInfo', isLoggedIn, (req, res) =>
     console.log("req user" + req.user);
     User.findOne({_id:req.user._id}).exec().then(u=>{
         console.log('first' + u);
-        u["local.income"] = req.body.annual-income;
+        u["local.income"] = req.body['annual-income'];
         u.save();
         console.log('second' + u);
-        console.log(req.body.annual-income);
+        console.log(req.body['annual-income']);
     })
     /*User.update({"_id.$oid":req.user._id}, {$set:{ "income" : req.body.annual-income}}, {upsert:true}, function(err, doc)
     {
