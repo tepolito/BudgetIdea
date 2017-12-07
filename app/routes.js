@@ -190,20 +190,19 @@ module.exports = function(app, passport) {
 
 app.post('/addInfo', isLoggedIn, (req, res) =>
 {
-    console.log("req body" + req.body);
-    console.log("req user" + req.user);
-    User.find({_id:req.user._id}).exec().then(u=>{
-        console.log('first' + u);
-        u["local.income"] = req.body['annual-income'];
-        console.log('u local income is: ' + u['local.income']);
-        u.save();
-        console.log('second' + u);
-        console.log('annual-income is:' + req.body['annual-income']);
-    })
-    /*User.update({"_id.$oid":req.user._id}, {$set:{ "income" : req.body['annual-income']}}, {upsert:true}, function(err, doc)
+    req.user.income = req.body['annual-income'];
+    req.user.save(function(err)
+        {
+            res.redirect('/profile');
+        });
+})
+
+app.get('/all', (req,res) =>
+{
+    User.find().exec().then(users =>
     {
-        console.log('updated' + doc);
-    })*/
+        res.render('all', {users:users});
+    })
 })
 
 };
