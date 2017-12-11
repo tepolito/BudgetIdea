@@ -57,7 +57,7 @@ http.listen(port, function(){
 });
 
 // launch ======================================================================
-/*app.listen(port);*/
+//app.listen(port);
 console.log('The magic happens on port ' + port);
 
 
