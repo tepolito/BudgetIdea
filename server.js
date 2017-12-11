@@ -16,6 +16,8 @@ var session      = require('express-session');
 
 var configDB = require('./config/database.js');
 
+var path = require('path');
+
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
 
@@ -26,6 +28,7 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
@@ -50,6 +53,12 @@ io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
+
+  socket.on('mouse location', function(mPos) // get from specific client
+  {
+  	io.emit('mouse location', mPos); //sending to all clients
+  })
+
 });
 
 http.listen(port, function(){
