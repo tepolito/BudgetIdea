@@ -766,6 +766,10 @@
   }
 }
 
+.shot {
+  animation: duckFall 1s;
+}
+
 #stage {
   background: #897200 url("https://raw.githubusercontent.com/vaielab/DuckHuntCss/master/stage.png") no-repeat left top;
   width: 1280px;
