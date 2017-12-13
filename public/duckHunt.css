@@ -767,7 +767,8 @@
 }
 
 .shot {
-  animation: duckFall 1s;
+  animation-name: duckFall;
+  animation-duration: 2s;
 }
 
 #stage {
@@ -812,9 +813,9 @@
 
 #shootingArea > div > div > div > label, #shootingArea > div > div > div > span {
   background: url("https://raw.githubusercontent.com/vaielab/DuckHuntCss/master/sprite.png") no-repeat;
-  height: 76px;
+  height: 120px/*76px*/;
   display: block;
-  width: 70px;
+  width: 120px/*70px*/;
   position: relative;
   background-position: 0px -220px;
   -webkit-animation: duckWing 200ms infinite step-end alternate;

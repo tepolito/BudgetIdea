@@ -23,7 +23,19 @@ $(function () {
 
         $('#box').on('click', function (e)
         {
-        	alert('clicked!');
+        	//alert('clicked!');
+
+          add.addClass('move1');
+          
         })
+
+        /*$('div').on('click', 'label', function (e)
+        {
+          console.log(this);
+
+          $(this).addClass('shot');
+
+          //$(this).find('input').addClass('shot');
+        })*/
 
       });
