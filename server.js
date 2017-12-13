@@ -59,6 +59,12 @@ io.on('connection', function(socket){
   	io.emit('mouse location', mPos); //sending to all clients
   })
 
+  socket.on('box move', function(move)
+  {
+  	$('#box').addClass('move1');
+  	io.emit('box move', move);
+  })
+
 });
 
 http.listen(port, function(){

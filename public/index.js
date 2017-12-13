@@ -25,8 +25,14 @@ $(function () {
         {
         	//alert('clicked!');
 
-          add.addClass('move1');
-          
+          console.log(this);
+          //socket.emit('box move', $(this).addClass('move1'));
+
+        })
+
+        socket.on('box move', function(move)
+        {
+          $('#box').addClass('move1');
         })
 
         /*$('div').on('click', 'label', function (e)
