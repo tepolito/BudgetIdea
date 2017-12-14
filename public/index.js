@@ -18,21 +18,23 @@ $(function () {
 
         socket.on('mouse location', function (mPos) // get from server
         {
-        	console.log(mPos[0], mPos[1]);
+        	//console.log(mPos[0], mPos[1]);
         })
 
-        $('#box').on('click', function (e)
+        $('.box').on('click', function (e)
         {
         	//alert('clicked!');
 
           console.log(this);
-          //socket.emit('box move', $(this).addClass('move1'));
+
+          socket.emit('box move');
 
         })
 
         socket.on('box move', function(move)
         {
-          $('#box').addClass('move1');
+          console.log('something');
+          $('.box').toggleClass('move1');
         })
 
         /*$('div').on('click', 'label', function (e)

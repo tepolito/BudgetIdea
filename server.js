@@ -61,7 +61,7 @@ io.on('connection', function(socket){
 
   socket.on('box move', function(move)
   {
-  	$('#box').addClass('move1');
+  	//$('#box').addClass('move1');
   	io.emit('box move', move);
   })
 
