@@ -43,7 +43,9 @@ $(function () {
 
         socket.on('box move', function(tp, lft)
         {
+
           var box = $('<div>', {'class': 'box'})
+
 // These will make it appear different on each screen
           //tp = randomNumberGen(0,100); // will generate the number for the top %      
          //lft = randomNumberGen(0,100); // will generate the number for the left %
@@ -63,8 +65,10 @@ $(function () {
 
             $('.box').css({'background-color': 'red', 'top': `${tp}%`, 'left':`${lft}%`});
             boxWatcher(); 
+            
           })
-      })
+
+        })
 
         function randomNumberGen(min, max)
         {
