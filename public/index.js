@@ -40,13 +40,23 @@ $(function () {
           {'background': 'red'},
           1,'linear',function ()
           {
+            tp = randomNumberGen(0,100); // will generate the number for the top %
+            lft = randomNumberGen(0,100); // will generate the number for the left %
+
             $('.box').remove();
             $('body').append(box);
             $('.box').text('box');
 
-            $('.box').css({'background-color': 'red', 'top':'35%', 'left':'60%'}); 
+            $('.box').css({'background-color': 'red', 'top': `${tp}%`, 'left':`${lft}%`}); 
           })
       })
+
+        function randomNumberGen(min, max)
+        {
+          num = Math.floor(Math.random()*(max-min+1)+min);
+
+          return num;
+        }
 
         /*$('div').on('click', 'label', function (e)
         {
