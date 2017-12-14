@@ -21,26 +21,31 @@ $(function () {
         	//console.log(mPos[0], mPos[1]);
         })
 
-        $('.box').on('click', function (e)
+        function boxWatcher()
         {
-        	//alert('clicked!');
+            $('.box').on('click', function (e)
+                    {
+                      //alert('clicked!');
+          
+                      //console.log(this);
+          
+                      tp = randomNumberGen(0,100); // will generate the number for the top %
+                      lft = randomNumberGen(0,100); // will generate the number for the left %
+          
+                      console.log(`the top value is: ${tp}, the left value is: ${lft}`);
+          
+                      socket.emit('box move', tp, lft);  
+          
+                    })
+        }
 
-          //console.log(this);
-
-          tp = randomNumberGen(0,100); // will generate the number for the top %
-          lft = randomNumberGen(0,100); // will generate the number for the left %
-
-          console.log(`the top value is: ${tp}, the left value is: ${lft}`);
-
-          socket.emit('box move', tp, lft);  
-
-        })
+        boxWatcher();
 
         socket.on('box move', function(tp, lft)
         {
           var box = $('<div>', {'class': 'box'})
-
-          //tp = randomNumberGen(0,100); // will generate the number for the top %
+// These will make it appear different on each screen
+          //tp = randomNumberGen(0,100); // will generate the number for the top %      
          //lft = randomNumberGen(0,100); // will generate the number for the left %
 
           console.log(`the top value is: ${tp}, the left value is: ${lft}`);
@@ -56,7 +61,8 @@ $(function () {
             $('body').append(box);
             $('.box').text('box');
 
-            $('.box').css({'background-color': 'red', 'top': `${tp}%`, 'left':`${lft}%`}); 
+            $('.box').css({'background-color': 'red', 'top': `${tp}%`, 'left':`${lft}%`});
+            boxWatcher(); 
           })
       })
 
@@ -66,14 +72,5 @@ $(function () {
 
           return num;
         }
-
-        /*$('div').on('click', 'label', function (e)
-        {
-          console.log(this);
-
-          $(this).addClass('shot');
-
-          //$(this).find('input').addClass('shot');
-        })*/
 
       });
