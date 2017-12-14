@@ -25,25 +25,26 @@ $(function () {
         {
         	//alert('clicked!');
 
-          console.log(this);
+          //console.log(this);
 
-          socket.emit('box move', user);
+          socket.emit('box move');
 
         })
 
-        socket.on('box move', function(move)
+        socket.on('box move', function(user)
         {
-          console.log('something');
+          var box = $('<div>', {'class': 'box'})
+          //console.log('something');
           /*$('.box').toggleClass('move1');*/
-          $('.box').animate({
-            'background': 'red'
-          },1000,function ()
+          $('.box').animate(
+          {'background': 'red'},
+          1,'linear',function ()
           {
             $('.box').remove();
-            setTimeout(function()
-            {
+            $('body').append(box);
+            $('.box').text('box');
 
-            })
+            $('.box').css({'background-color': 'red', 'top':'35%', 'left':'60%'}); 
           })
       })
 
