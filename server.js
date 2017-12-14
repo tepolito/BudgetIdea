@@ -59,10 +59,10 @@ io.on('connection', function(socket){
   	io.emit('mouse location', mPos); //sending to all clients
   })
 
-  socket.on('box move', function(user)
+  socket.on('box move', function(tp, lft)
   {
   	//$('#box').addClass('move1');
-  	io.emit('box move', user);
+  	io.emit('box move', tp, lft);
   })
 
 });

@@ -27,22 +27,31 @@ $(function () {
 
           //console.log(this);
 
-          socket.emit('box move');
+          tp = randomNumberGen(0,100); // will generate the number for the top %
+          lft = randomNumberGen(0,100); // will generate the number for the left %
+
+          console.log(`the top value is: ${tp}, the left value is: ${lft}`);
+
+          socket.emit('box move', tp, lft);  
 
         })
 
-        socket.on('box move', function(user)
+        socket.on('box move', function(tp, lft)
         {
           var box = $('<div>', {'class': 'box'})
+
+          //tp = randomNumberGen(0,100); // will generate the number for the top %
+         //lft = randomNumberGen(0,100); // will generate the number for the left %
+
+          console.log(`the top value is: ${tp}, the left value is: ${lft}`);
+
           //console.log('something');
           /*$('.box').toggleClass('move1');*/
           $('.box').animate(
           {'background': 'red'},
           1,'linear',function ()
           {
-            tp = randomNumberGen(0,100); // will generate the number for the top %
-            lft = randomNumberGen(0,100); // will generate the number for the left %
-
+            
             $('.box').remove();
             $('body').append(box);
             $('.box').text('box');
