@@ -27,15 +27,25 @@ $(function () {
 
           console.log(this);
 
-          socket.emit('box move');
+          socket.emit('box move', user);
 
         })
 
         socket.on('box move', function(move)
         {
           console.log('something');
-          $('.box').toggleClass('move1');
-        })
+          /*$('.box').toggleClass('move1');*/
+          $('.box').animate({
+            'background': 'red'
+          },1000,function ()
+          {
+            $('.box').remove();
+            setTimeout(function()
+            {
+
+            })
+          })
+      })
 
         /*$('div').on('click', 'label', function (e)
         {
