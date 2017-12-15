@@ -1,7 +1,7 @@
 $(function () {
 
-  const USER = {id: userID, score:score};
-  
+  const USER = {id: randomNumberGen(0, 99999999), score:0};
+
         var socket = io();
         $('form').submit(function(){
           socket.emit('chat message', $('#m').val());
@@ -30,14 +30,17 @@ $(function () {
                     {
                       //alert('clicked!');
           
-                      //console.log(this);
+                      console.log(USER.id);
+
+                      userId = USER.id;
           
-                      tp = randomNumberGen(0,100); // will generate the number for the top %
-                      lft = randomNumberGen(0,100); // will generate the number for the left %
+                      tp = randomNumberGen(5,95); // will generate the number for the top %
+                      lft = randomNumberGen(5,95); // will generate the number for the left %
           
                       console.log(`the top value is: ${tp}, the left value is: ${lft}`);
+                      console.log(`this user's id is: ${userId}`);
           
-                      socket.emit('box move', tp, lft);  
+                      socket.emit('box move', tp, lft, userId);  
           
                     })
         }
