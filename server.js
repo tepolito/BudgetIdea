@@ -49,7 +49,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 io.on('connection', function(socket){
-	console.log('anything');
+	console.log('we good');
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
@@ -59,10 +59,10 @@ io.on('connection', function(socket){
   	io.emit('mouse location', mPos); //sending to all clients
   })
 
-  socket.on('box move', function(tp, lft)
+  socket.on('box move', function(tp, lft, userId, score)
   {
   	//$('#box').addClass('move1');
-  	io.emit('box move', tp, lft);
+  	io.emit('box move', tp, lft, userId, score);
   })
 
 });

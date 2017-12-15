@@ -160,7 +160,7 @@ module.exports = function(app, passport) {
         });
     });
 
-    // facebook -------------------------------
+    // facebook ------------------------------- 
     app.get('/unlink/facebook', isLoggedIn, function(req, res) {
         var user            = req.user;
         user.facebook.token = undefined;

@@ -30,24 +30,27 @@ $(function () {
                     {
                       //alert('clicked!');
           
-                      console.log(USER.id);
+                      //console.log(USER.id);
+
+                      USER.score += 100;
+                      score = USER.score
 
                       userId = USER.id;
           
                       tp = randomNumberGen(5,95); // will generate the number for the top %
                       lft = randomNumberGen(5,95); // will generate the number for the left %
           
-                      console.log(`the top value is: ${tp}, the left value is: ${lft}`);
-                      console.log(`this user's id is: ${userId}`);
+                      //console.log(`the top value is: ${tp}, the left value is: ${lft}`);
+                      //console.log(`this user's id is: ${userId}`);
           
-                      socket.emit('box move', tp, lft, userId);  
+                      socket.emit('box move', tp, lft, userId, score);  
           
                     })
         }
 
         boxWatcher();
 
-        socket.on('box move', function(tp, lft)
+        socket.on('box move', function(tp, lft, userId, score)
         {
 
           var box = $('<div>', {'class': 'box'})
@@ -56,7 +59,9 @@ $(function () {
           //tp = randomNumberGen(0,100); // will generate the number for the top %      
          //lft = randomNumberGen(0,100); // will generate the number for the left %
 
-          console.log(`the top value is: ${tp}, the left value is: ${lft}`);
+          //console.log(`the top value is: ${tp}, the left value is: ${lft}`);
+          console.log(`my user id is ${USER.id}`);
+          console.log(`i was passed ${userId} for a user id`);
 
           //console.log('something');
           /*$('.box').toggleClass('move1');*/
@@ -67,6 +72,15 @@ $(function () {
 
             $('.box').css({'background-color': 'red', 'top': `${tp}%`, 'left':`${lft}%`});
             boxWatcher(); 
+
+            if(USER.id == userId)
+            {
+              $('#player1Score').text(`Score: ${score}`);
+            }
+            else
+            {
+              $('#player2Score').text(`Score: ${score}`);
+            }
             
         })
 

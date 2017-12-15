@@ -11,6 +11,18 @@
 	animation: moveer 2s forwards;
 }
 
+#player1ScoreBox{
+	position: absolute;
+	left: 0%;
+	top: 0%;
+}
+
+#player2ScoreBox{
+	position: absolute;
+	right: 0%;
+	top: 0%;
+}
+
 @keyframes moveer{
 
 	0%{background: blue;}
