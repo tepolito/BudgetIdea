@@ -3,7 +3,7 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	font-size: 50px;
+	font-size: 5em;
 	display: block;
 }
 
@@ -12,14 +12,14 @@
 }
 
 #player1ScoreBox{
-	font-size: 25px;
+	font-size: 3em;
 	position: absolute;
 	left: 0%;
 	top: 0%;
 }
 
 #player2ScoreBox{
-	font-size: 25px;
+	font-size: 3em;
 	position: absolute;
 	right: 0%;
 	top: 0%;
