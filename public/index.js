@@ -1,4 +1,7 @@
 $(function () {
+
+  const USER = {id: userID, score:score};
+  
         var socket = io();
         $('form').submit(function(){
           socket.emit('chat message', $('#m').val());
@@ -54,10 +57,6 @@ $(function () {
 
           //console.log('something');
           /*$('.box').toggleClass('move1');*/
-          $('.box').animate(
-          {'background': 'red'},
-          1,'linear',function ()
-          {
             
             $('.box').remove();
             $('body').append(box);
@@ -66,8 +65,6 @@ $(function () {
             $('.box').css({'background-color': 'red', 'top': `${tp}%`, 'left':`${lft}%`});
             boxWatcher(); 
             
-          })
-
         })
 
         function randomNumberGen(min, max)
