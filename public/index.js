@@ -1,5 +1,7 @@
 $(function () {
 
+  //var User = require('../app/models/user');
+
   const USER = {id: randomNumberGen(0, 99999999), score:0};
 
         var socket = io();
@@ -30,7 +32,7 @@ $(function () {
                     {
                       //alert('clicked!');
           
-                      //console.log(USER.id);
+                     //console.log(User);
 
                       USER.score += 100;
                       score = USER.score
