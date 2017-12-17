@@ -25,6 +25,16 @@
 	top: 0%;
 }
 
+.win-text{
+	position: absolute;
+	top: 40%;
+	left: 30%;
+
+	text-align: center;
+
+	font-size: 5em;
+}
+
 @keyframes moveer{
 
 	0%{background: blue;}

@@ -11,15 +11,29 @@
 </head>
 <body>
 
-<div class="box"> BOX </div>
+<div class="game-stuff">
 
-<div id="player1ScoreBox" class="scoreBox">
-    <h2>YOU</h2>
-    <span id="player1Score">Score:0</span>
+    <div class="box"> BOX </div>
+
+    <div id="player1ScoreBox" class="scoreBox">
+        <h2>YOU</h2>
+        <span id="player1Score">Score:0</span>
+    </div>
+
+    <div id="player2ScoreBox" class="scoreBox">
+        <h2>THEM</h2>
+        <span id="player2Score">Score:0</span>
+    </div>
+
 </div>
-<div id="player2ScoreBox" class="scoreBox">
-    <h2>THEM</h2>
-    <span id="player2Score">Score:0</span>
+
+
+<div class="start-info">
+    <h2>Howdy!! What are we going to play till?</h2>
+    <form class="score-limit-form">
+        <input type="text" name="score-limit" class="score-limit-text" placeholder="eg 1000">
+        <button type="submit" class="submit-score-limit">Submit</button>
+    </form>
 </div>
 
 

@@ -3,6 +3,9 @@ $(function () {
   //var User = require('../app/models/user');
 
   const USER = {id: randomNumberGen(0, 99999999), score:0};
+  var SCORE_LIMIT;
+
+  $('.game-stuff').hide();
 
         var socket = io();
         $('form').submit(function(){
@@ -25,6 +28,26 @@ $(function () {
         {
         	//console.log(mPos[0], mPos[1]);
         })
+
+        function gameStarter()
+        {
+            $('.score-limit-form').submit(function (e)
+            {
+              e.preventDefault();
+
+             slimit = $(e.currentTarget).find('.score-limit-text').val();
+
+             SCORE_LIMIT = slimit;
+
+              console.log(`we are playing till ${SCORE_LIMIT}`);
+
+              $('.game-stuff').show();
+              $('.start-info').hide();
+
+            })
+        }
+
+        gameStarter();
 
         function boxWatcher()
         {
@@ -83,8 +106,25 @@ $(function () {
             {
               $('#player2Score').text(`Score: ${score}`);
             }
+
+            scoreChecker();
             
         })
+
+        function scoreChecker()
+        {
+
+          var winText = $('<p>', {'class': 'win-text'});
+
+           if(USER.score >= SCORE_LIMIT)
+           {
+             $('.box').hide();
+
+             $('body').append(winText);
+             $('.win-text').text('CONGRATS YOU WIN');
+             //$('.win-text').css({'top': '50%', 'left': '50%', 'font-size': '5em'});
+           }
+        }
 
         function randomNumberGen(min, max)
         {

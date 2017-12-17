@@ -26,9 +26,9 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
-    },*/
+    },
 
-    income           : {type:Number, default:0}, 
+    income           : {type:Number, default:0},*/ 
 
     scoreAllTime     : {type:Number, default:0}
 
