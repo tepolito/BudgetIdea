@@ -16,21 +16,27 @@
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
-    <form action="/addInfo" method="post">
+    <!-- <form action="/addInfo" method="post">
         <div class="form-group">
             <label>Annual Income</label>
             <input type="text" class="form-control" name="annual-income">
         </div>
-        <!-- <div class="form-group">
+        <div class="form-group">
             <label>Password</label>
             <input type="password" class="form-control" name="password">
-        </div> -->
+        </div>
         <strong>income</strong>: <%= user.income %>
         <div id="income"></div>
         <input id="slider" type="range" min="0" max="1000000" step="1000" name="income-slider">
 
         <button type="submit" class="btn btn-warning btn-lg">Submit</button>
-    </form>
+    </form> -->
+
+    <div>
+        <h1>Profile Page</h1>
+        <h4 contenteditable="true" id="name">name <%= user.name %></h4>
+        <button id="save">Save</button>        
+    </div>
 
     <div class="row">
 
@@ -137,5 +143,9 @@
     $('#slider').on('change', function()
         { $('#income').text(this.value) })
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="index.js"></script>
 </body>
 </html>

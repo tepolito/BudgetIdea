@@ -7,12 +7,23 @@ module.exports = function(app, passport) {
 // normal routes ===============================================================
 
     // show the home page (will also have our login links)
-    app.get('/', function(req, res) {
-        res.render('index.ejs');
+    app.get('/', function(req, res) 
+    {
+        console.log(req.user);
+        if(req.user)
+        {
+            res.redirect('/profile');
+        }
+        else
+        {
+            res.render('index.ejs');
+        }
+        
     });
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
+        console.log(req.user);
         res.render('profile.ejs', {
             user : req.user
         });
@@ -197,11 +208,21 @@ app.post('/addInfo', isLoggedIn, (req, res) =>
         });
 })
 
-app.get('/all', (req,res) =>
+app.post('/profile', isLoggedIn, (req, res) =>
+{
+    console.log(req.body)
+    req.user.name = req.body.name;
+    req.user.save(function(err)
+        {
+            res.redirect('/profile');
+        });
+})
+
+app.get('/all', isLoggedIn, (req,res) =>
 {
     User.find().exec().then(users =>
     {
-        res.render('all', {users:users});
+        res.render('all', {users:users, profile:req.user});
     })
 })
 

@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
         email        : String,
         password     : String
     },
-    /*facebook         : {
+    facebook         : {
         id           : String,
         token        : String,
         name         : String,
@@ -28,9 +28,11 @@ var userSchema = mongoose.Schema({
         name         : String
     },
 
-    income           : {type:Number, default:0},*/ 
+    income           : {type:Number, default:0}, 
 
-    scoreAllTime     : {type:Number, default:0}
+    scoreAllTime     : {type:Number, default:0},
+
+    name             : String
 
 });
 

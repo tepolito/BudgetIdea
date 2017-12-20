@@ -65,6 +65,11 @@ io.on('connection', function(socket){
   	io.emit('box move', tp, lft, userId, score);
   })
 
+  socket.on('winning',function()
+  {
+    io.emit('winning', $('.box').hide()); 
+  })
+
 });
 
 http.listen(port, function(){

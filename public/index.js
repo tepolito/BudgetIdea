@@ -7,13 +7,16 @@ $(function () {
 
   $('.game-stuff').hide();
 
-        var socket = io();
-        $('form').submit(function(){
+        var socket = io(); 
+        $('form').submit(function()
+        {
           socket.emit('chat message', $('#m').val());
           $('#m').val('');
           return false;
         });
-        socket.on('chat message', function(msg){
+
+        socket.on('chat message', function(msg)
+        {
           $('#messages').append($('<li>').text(msg));
           window.scrollTo(0, document.body.scrollHeight);
         });
@@ -118,12 +121,13 @@ $(function () {
 
            if(USER.score >= SCORE_LIMIT)
            {
-             $('.box').hide();
+             socket.emit('winning', $('.box').hide());
 
              $('body').append(winText);
              $('.win-text').text('CONGRATS YOU WIN');
              //$('.win-text').css({'top': '50%', 'left': '50%', 'font-size': '5em'});
            }
+
         }
 
         function randomNumberGen(min, max)
@@ -132,5 +136,36 @@ $(function () {
 
           return num;
         }
+
+
+        $('#save').on('click', function (e)
+        {
+          let val = $('#name').text();
+          console.log(`val is ${val}`);
+
+          var data = {'name':val};
+
+          
+
+          $.ajax({
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            url: '',            
+            success: function(data) {
+              console.log('success');
+              console.log(JSON.stringify(data));
+            }
+          });
+        })
+
+
+
+
+
+
+
+
+
 
       });
