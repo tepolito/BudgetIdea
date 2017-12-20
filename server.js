@@ -67,7 +67,7 @@ io.on('connection', function(socket){
 
   socket.on('winning',function()
   {
-    io.emit('winning', $('.box').hide()); 
+    io.emit('winning', $('.box').hide());  
   })
 
 });

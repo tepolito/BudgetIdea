@@ -210,7 +210,7 @@ app.post('/addInfo', isLoggedIn, (req, res) =>
 
 app.post('/profile', isLoggedIn, (req, res) =>
 {
-    console.log(req.body)
+    console.log("the req.body is " + req.body);
     req.user.name = req.body.name;
     req.user.save(function(err)
         {
@@ -218,11 +218,22 @@ app.post('/profile', isLoggedIn, (req, res) =>
         });
 })
 
+app.post('/all', isLoggedIn, (req,res) =>
+{
+    console.log(`the req.body.scoreAllTime is ${req.body.scoreAllTime}`);
+    console.log(`the req.user.scoreAllTime is ${req.user.scoreAllTime}`); 
+    req.user.scoreAllTime = req.body.scoreAllTime;
+    req.user.save(function(err)
+    {
+        //alert('ya done fucked up');
+    })
+})
+
 app.get('/all', isLoggedIn, (req,res) =>
 {
-    User.find().exec().then(users =>
+    User.find().exec().then(users =>  
     {
-        res.render('all', {users:users, profile:req.user});
+        res.render('all', {users:users, profile:req.user}); 
     })
 })
 

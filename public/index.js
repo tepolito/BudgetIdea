@@ -55,25 +55,45 @@ $(function () {
         function boxWatcher()
         {
             $('.box').on('click', function (e)
-                    {
-                      //alert('clicked!');
-          
-                     //console.log(User);
+            {
+              //alert('clicked!');
 
-                      USER.score += 100;
-                      score = USER.score
+             //console.log(User);
 
-                      userId = USER.id;
-          
-                      tp = randomNumberGen(5,95); // will generate the number for the top %
-                      lft = randomNumberGen(5,95); // will generate the number for the left %
-          
-                      //console.log(`the top value is: ${tp}, the left value is: ${lft}`);
-                      //console.log(`this user's id is: ${userId}`);
-          
-                      socket.emit('box move', tp, lft, userId, score);  
-          
-                    })
+             USER.score += 100;
+             score = USER.score
+
+             userId = USER.id;
+
+              tp = randomNumberGen(5,95); // will generate the number for the top %
+              lft = randomNumberGen(5,95); // will generate the number for the left %
+
+              //console.log(`the top value is: ${tp}, the left value is: ${lft}`);
+              //console.log(`this user's id is: ${userId}`);
+
+              socket.emit('box move', tp, lft, userId, score);
+
+              console.log(`the score i am posting is ${score}`); 
+ 
+              var data = {'scoreAllTime':`${score}`};
+ 
+              console.log(data); 
+
+              $.post('',data); 
+
+              /*$.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                url: '',            
+                success: function(data) 
+                {
+                  console.log('success');
+                  console.log(JSON.stringify(data)); 
+                }
+              });  */
+
+            })
         }
 
         boxWatcher();
@@ -92,7 +112,7 @@ $(function () {
           console.log(`i was passed ${userId} for a user id`);
 
           //console.log('something');
-          /*$('.box').toggleClass('move1');*/
+          /*$('.box').toggleClass('move1');*/ 
             
             $('.box').remove();
             $('body').append(box);
@@ -145,14 +165,15 @@ $(function () {
 
           var data = {'name':val};
 
-          
+          console.log(data); 
 
           $.ajax({
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
-            url: '',            
-            success: function(data) {
+            url: '',             
+            success: function(data) 
+            {
               console.log('success');
               console.log(JSON.stringify(data));
             }

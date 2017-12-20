@@ -25,12 +25,12 @@
         <li>
             <div class="scoreBox">
                 <h2><%= guy.name %></h2>
-                <span class="span-score" data-user = '<%= guy._id %>'>Score:0</span>
+                <span class="span-score" data-user = '<%= guy._id %>'>Score: <%= guy.scoreAllTime %></span>
             </div>
         </li>
-        <% }); %>
+        <% }); %> 
     </div>
-
+ 
     <!-- <div id="player2ScoreBox" class="scoreBox">
         <h2>THEM</h2>
         <span id="player2Score">Score:0</span>
