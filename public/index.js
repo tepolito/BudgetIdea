@@ -5,7 +5,7 @@ $(function () {
   const USER = {id: randomNumberGen(0, 99999999), score:0};
   var SCORE_LIMIT;
 
-  $('.game-stuff').hide();
+  $('.start-info').hide();
 
         var socket = io(); 
         $('form').submit(function()
@@ -24,7 +24,7 @@ $(function () {
         $(window).on('mousemove', function (e)
         {
         	
-        	socket.emit('mouse location', [e.clientX, e.clientY]); //sending it to server
+        	socket.emit('mouse location', [e.clientX, e.clientY]); //sending it to server 
         })
 
         socket.on('mouse location', function (mPos) // get from server
@@ -50,7 +50,7 @@ $(function () {
             })
         }
 
-        gameStarter();
+        //gameStarter();
 
         function boxWatcher()
         {

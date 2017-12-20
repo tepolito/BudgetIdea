@@ -35,6 +35,10 @@
 	font-size: 5em;
 }
 
+li{
+	display: inline-block;
+}
+
 @keyframes moveer{
 
 	0%{background: blue;}
