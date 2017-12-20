@@ -15,19 +15,26 @@
 
     <div class="box"> BOX </div>
 
-    <div id="player1ScoreBox" class="scoreBox">
+    <!-- <div id="player1ScoreBox" class="scoreBox">
         <h2>YOU <%= profile.name %></h2>
         <span id="player1Score" data-user = '<%= profile._id %>'>Score:0</span>
+    </div> -->
+    <div class="player-scores">
+        <% users.forEach(function(guy) { %>
+        <!-- <li><%= guy.name %> - <%= guy._id %></li> -->
+        <li>
+            <div class="scoreBox">
+                <h2><%= guy.name %></h2>
+                <span class="span-score" data-user = '<%= guy._id %>'>Score:0</span>
+            </div>
+        </li>
+        <% }); %>
     </div>
 
-    <% users.forEach(function(guy) { %>
-        <li><%= guy.name %> - <%= guy._id %></li>
-    <% }); %>
-
-    <div id="player2ScoreBox" class="scoreBox">
+    <!-- <div id="player2ScoreBox" class="scoreBox">
         <h2>THEM</h2>
         <span id="player2Score">Score:0</span>
-    </div>
+    </div> -->
 
 </div>
 

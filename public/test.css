@@ -39,6 +39,16 @@ li{
 	display: inline-block;
 }
 
+.scoreBox{
+	margin-right: 10px; 
+}
+
+.player-scores{
+	position: fixed;
+	top: 5%;
+	left: 5%;
+}
+
 @keyframes moveer{
 
 	0%{background: blue;}
