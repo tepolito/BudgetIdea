@@ -48,8 +48,26 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-io.on('connection', function(socket){
+io.on('connection', function(socket)
+{
 	console.log('we good');
+
+    
+  /*io.engine === io.eio // => true
+  Object.keys(io.engine.clients) // => [ 'US8AxrUrrDF_G7ZUAAAA', 'Ov2Ca24Olkhf2NHbAAAB' ]
+  Object.keys(io.eio.clients)
+
+  io.engine.clientsCount // => 2
+  io.eio.clientsCount
+
+  console.log(
+
+    io.engine === io.eio, // => true
+  Object.keys(io.engine.clients),  // => [ 'US8AxrUrrDF_G7ZUAAAA', 'Ov2Ca24Olkhf2NHbAAAB' ]
+  Object.keys(io.eio.clients)
+
+    )*/ 
+
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
@@ -59,14 +77,14 @@ io.on('connection', function(socket){
   	io.emit('mouse location', mPos); //sending to all clients
   })
 
-  socket.on('box move', function(tp, lft, userId, score)
-  {
+  socket.on('box move', function(tp, lft, userId, score, data)
+  { 
   	//$('#box').addClass('move1');
-  	io.emit('box move', tp, lft, userId, score);
+  	io.emit('box move', tp, lft, userId, score, data);
   })
 
   socket.on('winning',function()
-  {
+  { 
     io.emit('winning', $('.box').hide());  
   })
 

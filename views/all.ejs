@@ -15,6 +15,10 @@
 
     <div class="box"> BOX </div>
 
+    <div class="profile">
+        <%= profile._id %>
+    </div>
+
     <!-- <div id="player1ScoreBox" class="scoreBox">
         <h2>YOU <%= profile.name %></h2>
         <span id="player1Score" data-user = '<%= profile._id %>'>Score:0</span>
@@ -25,6 +29,7 @@
         <li>
             <div class="scoreBox">
                 <h2><%= guy.name %></h2>
+
                 <span class="span-score" data-user = '<%= guy._id %>'>Score: <%= guy.scoreAllTime %></span>
             </div>
         </li>

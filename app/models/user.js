@@ -30,7 +30,7 @@ var userSchema = mongoose.Schema({
 
     income           : {type:Number, default:0}, 
 
-    scoreAllTime     : {type:Number, default:0},
+    score            : {type:Number, default:0},
 
     name             : String
 

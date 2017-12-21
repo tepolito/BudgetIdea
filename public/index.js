@@ -71,15 +71,17 @@ $(function () {
               //console.log(`the top value is: ${tp}, the left value is: ${lft}`);
               //console.log(`this user's id is: ${userId}`);
 
-              socket.emit('box move', tp, lft, userId, score);
+              
 
               console.log(`the score i am posting is ${score}`); 
+  
+              var data = {'score':score, 'user':$('.profile').text().trim()}; 
  
-              var data = {'scoreAllTime':`${score}`};
- 
-              console.log(data); 
+              console.log(`data is ${data}`); 
 
-              $.post('',data); 
+              socket.emit('box move', tp, lft, userId, score, data);
+
+              $.post('', data); 
 
               /*$.ajax({
                 type: 'POST',
@@ -98,7 +100,7 @@ $(function () {
 
         boxWatcher();
 
-        socket.on('box move', function(tp, lft, userId, score)
+        socket.on('box move', function(tp, lft, userId, score, data)
         {
 
           var box = $('<div>', {'class': 'box'})
@@ -108,8 +110,8 @@ $(function () {
          //lft = randomNumberGen(0,100); // will generate the number for the left %
 
           //console.log(`the top value is: ${tp}, the left value is: ${lft}`);
-          console.log(`my user id is ${USER.id}`);
-          console.log(`i was passed ${userId} for a user id`);
+          /*console.log(`my user id is ${USER.id}`);
+          console.log(`i was passed ${userId} for a user id`);*/
 
           //console.log('something');
           /*$('.box').toggleClass('move1');*/ 
@@ -121,14 +123,18 @@ $(function () {
             $('.box').css({'background-color': 'red', 'top': `${tp}%`, 'left':`${lft}%`});
             boxWatcher(); 
 
-            if(USER.id == userId)
+            console.log(data);  
+
+            $("span[data-user='" + data.user +"']").text(data.score); 
+
+            /*if(USER.id == userId)
             {
               $('#player1Score').text(`Score: ${score}`);
             }
             else
             {
               $('#player2Score').text(`Score: ${score}`);
-            }
+            }*/
 
             scoreChecker();
             

@@ -220,16 +220,16 @@ app.post('/profile', isLoggedIn, (req, res) =>
 
 app.post('/all', isLoggedIn, (req,res) =>
 {
-    console.log(`the req.body.scoreAllTime is ${req.body.scoreAllTime}`);
-    console.log(`the req.user.scoreAllTime is ${req.user.scoreAllTime}`); 
-    req.user.scoreAllTime = req.body.scoreAllTime;
+    console.log(`the req.body.scoreAllTime is ${req.body.score}`);
+    console.log(`the req.user.scoreAllTime is ${req.user.score}`); 
+    req.user.score = req.body.score;
     req.user.save(function(err)
     {
-        //alert('ya done fucked up');
+        res.end(); 
     })
 })
 
-app.get('/all', isLoggedIn, (req,res) =>
+app.get('/all', isLoggedIn, (req,res) => 
 {
     User.find().exec().then(users =>  
     {
