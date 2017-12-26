@@ -80,12 +80,22 @@ io.on('connection', function(socket)
   socket.on('box move', function(tp, lft, userId, score, data)
   { 
   	//$('#box').addClass('move1');
-  	io.emit('box move', tp, lft, userId, score, data);
-  })
+  	io.emit('box move', tp, lft, userId, score, data);    
+  })  
 
   socket.on('winning',function()
   { 
     io.emit('winning', $('.box').hide());  
+  })
+
+  socket.on("keydown", function(note)
+  {
+    io.emit("keydown", note);
+  })
+
+  socket.on("keyup", function(note)
+  {
+    io.emit("keyup", note);
   })
 
 });

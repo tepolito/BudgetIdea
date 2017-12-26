@@ -229,7 +229,7 @@ app.post('/all', isLoggedIn, (req,res) =>
     })
 })
 
-app.get('/all', isLoggedIn, (req,res) => 
+app.get('/all', (req,res) => 
 {
     User.find().exec().then(users =>  
     {
