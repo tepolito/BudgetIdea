@@ -55,6 +55,10 @@ li{
 	position: relative;
 }
 
+.loopOn {
+	background: red;
+}
+
 @keyframes moveer{
 
 	0%{background: blue;}

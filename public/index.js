@@ -188,11 +188,7 @@ $(function () {
         let recording = false;
         let loop = false;
 
-        setInterval(function()
-        {
-          console.log('somtehitn')
-          socket.emit('keydown', 'A0')
-        }, 1000);
+        
 
         var piano = new Tone.Sampler({
             'A0' : 'A0.[mp3|ogg]',
@@ -235,6 +231,9 @@ $(function () {
         $('#loop').on('click', function()
         {
            loop = !loop;
+
+           $(this).toggleClass('loopOn');
+
         })
 
         keyboard.keyDown = function (note) 
@@ -258,7 +257,9 @@ $(function () {
 
           if(loop)
           {
-
+            let time = Date.now() - attackTime;
+            looparr.push({note: note, attack: time})
+            attackTime = Date.now();
           }
           
 
@@ -300,6 +301,26 @@ $(function () {
         seconds = 0, minutes = 0, hours = 0,
         t;
         var record_array = [/*{note: 'C8', attack: 1000}, {note: 'A0', attack: 5000}, {note: 'A2', attack: 2500}*/];
+        var looparr = [{note: 'C8', attack: 100}, {note: 'A0', attack: 500}, {note: 'A2', attack: 250}];
+
+        function playLoop(loop_array)
+        {
+             console.log(loop_array);
+             if(loop_array.length > 0)
+             { 
+              //console.log('in playrecord record-array is ' + record_array + 'the length is ' + record_array.length);
+             let loops = loop_array.shift();
+             //console.log('in playrecord record is ' + record);
+
+             setTimeout(function ()
+               {
+                  socket.emit('keydown', loops.note);
+                  //piano.triggerRelease(record.note);
+                  
+                  playLoop(loop_array);
+              }, loops.attack);
+            }
+        }
 
         function playRecord(record_array)
         {
@@ -322,7 +343,26 @@ $(function () {
 
         playRecord(record_array);
 
+        function startInterval()
+        {
+          return setInterval(function()
+          {
+            console.log('somtehitn', looparr)
+            let loop_array = looparr.slice();
 
+            playLoop(loop_array);
+          }, 4000);
+          
+        }
+
+        var int = startInterval();
+
+        $('#clearLoop').on('click', function (e)
+        {
+          clearInterval(int);
+          looparr = [];
+          int = startInterval();
+        })
 
         function add() 
         {
