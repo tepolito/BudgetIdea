@@ -6,6 +6,7 @@ $(function () {
   var SCORE_LIMIT;
 
   $('.start-info').hide();
+  $('#songs').hide();
 
         var socket = io(); 
         $('form').submit(function()
@@ -183,6 +184,7 @@ $(function () {
         })
 
         let attackTime = 0;
+        let releaseTime =0;
         let recording = false;
 
         var piano = new Tone.Sampler({
@@ -254,6 +256,13 @@ $(function () {
 
         socket.on("keyup", function(note)
         {
+          if(recording)
+          {
+            let time = Date.now() - releaseTime;
+            record_array.push({note: note, release: time})
+            releaseTime = Date.now();
+            console.log(record_array);
+          }
           piano.triggerRelease(note);
         })
         Interface.Loader();
@@ -286,6 +295,7 @@ $(function () {
              setTimeout(function ()
                {
                   piano.triggerAttack(record.note);
+                  //piano.triggerRelease(record.note);
                   console.log(record);
                   playRecord(record_array);
               }, record.attack);
@@ -322,6 +332,7 @@ $(function () {
         {
           recording = true;
           attackTime = Date.now();
+          releaseTime = Date.now();
           seconds = 0;
           minutes = 0 ;
           hours = 0;
@@ -368,24 +379,7 @@ $(function () {
         {
           console.log('recordedSongs button works');
 
-          $.get('/playRecord', (data) =>
-          {
-            console.log(data);
-            //$('#songs').html(data);
-          })
-
-          /*$.ajax({
-            type: 'GET',
-            data: songs,
-            contentType: 'application/json',
-            url: '/playRecord',             
-            success: function(data) 
-            {
-              console.log('success');
-              console.log(JSON.stringify(data));
-              $('#songs').html(data);
-            }
-          });*/
+          $('#songs').show();
         }
 
         $('.songBox').on('click', '.playButton', function (e)
@@ -394,7 +388,7 @@ $(function () {
 
           console.log($(this).siblings('.span-song'));
 
-          newSong = JSON.parse($(this).siblings('.span-song').text())/*.replace(/["]+/g, '')*/;
+          newSong = JSON.parse($(this).siblings('.span-song').text());
 
           record_array = [];
           record_array = newSong;
