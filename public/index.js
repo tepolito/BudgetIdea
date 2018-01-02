@@ -269,16 +269,19 @@ $(function () {
         stop = document.getElementById('stop'),
         clear = document.getElementById('clear'),
         save = document.getElementById('saveRecord'),
+        recordedSongs = document.getElementById('recordedSongs'),
         seconds = 0, minutes = 0, hours = 0,
         t;
-        var record_array = [{note: 'C8', attack: 1000}, {note: 'A0', attack: 5000}, {note: 'A2', attack: 2500}];
+        var record_array = [/*{note: 'C8', attack: 1000}, {note: 'A0', attack: 5000}, {note: 'A2', attack: 2500}*/];
 
         function playRecord(record_array)
         {
              
              if(record_array.length > 0)
              { 
+              console.log('in playrecord record-array is ' + record_array + 'the length is ' + record_array.length);
              let record = record_array.shift();
+             console.log('in playrecord record is ' + record);
 
              setTimeout(function ()
                {
@@ -360,6 +363,47 @@ $(function () {
             }
           });
         }
+
+        recordedSongs.onclick = function()
+        {
+          console.log('recordedSongs button works');
+
+          $.get('/playRecord', (data) =>
+          {
+            console.log(data);
+            //$('#songs').html(data);
+          })
+
+          /*$.ajax({
+            type: 'GET',
+            data: songs,
+            contentType: 'application/json',
+            url: '/playRecord',             
+            success: function(data) 
+            {
+              console.log('success');
+              console.log(JSON.stringify(data));
+              $('#songs').html(data);
+            }
+          });*/
+        }
+
+        $('.songBox').on('click', '.playButton', function (e)
+        {
+          console.log(this);
+
+          console.log($(this).siblings('.span-song'));
+
+          newSong = JSON.parse($(this).siblings('.span-song').text())/*.replace(/["]+/g, '')*/;
+
+          record_array = [];
+          record_array = newSong;
+
+          console.log(record_array);
+
+          playRecord(record_array);
+
+        })
 
 
       });

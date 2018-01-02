@@ -15,7 +15,7 @@
 
     <!-- <div class="box"> BOX </div> -->
 
-    <div class="profile">
+     <div class="profile">
         <%= profile %>
     </div>
 
@@ -71,6 +71,21 @@
     <button id="clear">clear</button>
     <button id="saveRecord">save</button>
     <input type="text" name="songTitle" class="songTitle" placeholder="Name your song here!!">
+    <button id="recordedSongs">see recorded songs</button>
+
+    <div id="songs">
+        <% songs.forEach(function(song) { %>
+        <li>
+            <div class="songBox">
+                <h2><%= song.songname %></h2>
+
+                <span class="span-song"><%= JSON.stringify(song.song) %></span>
+                <button class="playButton">Play</button>
+            </div>
+
+        </li>
+        <% }); %>
+    </div>
 
 
 <!-- <div class="hi diff"></div> -->

@@ -233,25 +233,26 @@ app.get('/all', (req,res) =>
 {
     User.find().exec().then(users =>  
     {
-        res.render('all', {users:users, profile:req.user}); 
+        res.render('all', {users:users, profile:req.user, songs:req.user.songs});   
     })
 })
 
 app.post('/saveRecord', isLoggedIn, (req,res) =>
-{
+{ 
     console.log(req.body, req.user);
     User.update({_id:req.user._id}, {$push:{songs:req.body}}).exec().then().catch(err =>
-    {
-        throw err;
+    { 
+        throw err;    
     })
-})
+})  
 
 /*app.get('/playRecord', isLoggedIn, (req,res) =>
 {
-    User.find({_id: req.user._id}).exec().then(curUser =>
+    console.log(req.user._id);    
+    User.find({_id:req.user._id}).exec().then(curUser => 
     {
-        res.render('all', {songs:songs});
-    })
+        res.render('all', {songs:req.user.songs});
+    })  
 })*/
 
 };
@@ -261,7 +262,7 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    res.redirect('/');
+    res.redirect('/'); 
 }
 
 

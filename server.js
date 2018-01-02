@@ -34,7 +34,7 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 process.on('SIGTERM', function()
 {
-  console.log('SIGTERM');
+  console.log('SIGTERM'); 
 })
 
 process.on('uncaughtException', function()
