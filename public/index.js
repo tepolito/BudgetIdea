@@ -6,7 +6,7 @@ $(function () {
   var SCORE_LIMIT;
 
   $('.start-info').hide();
-  $('#songs').hide();
+  //$('#songs').hide();
 
         var socket = io(); 
         $('form').submit(function()
@@ -186,6 +186,13 @@ $(function () {
         let attackTime = 0;
         let releaseTime =0;
         let recording = false;
+        let loop = false;
+
+        setInterval(function()
+        {
+          console.log('somtehitn')
+          socket.emit('keydown', 'A0')
+        }, 1000);
 
         var piano = new Tone.Sampler({
             'A0' : 'A0.[mp3|ogg]',
@@ -224,6 +231,12 @@ $(function () {
         }).toMaster();
         // GUI //
         var keyboard = Interface.Keyboard();
+
+        $('#loop').on('click', function()
+        {
+           loop = !loop;
+        })
+
         keyboard.keyDown = function (note) 
         {
 
@@ -241,6 +254,11 @@ $(function () {
             record_array.push({note: note, attack: time})
             attackTime = Date.now();
             console.log(record_array);
+          }
+
+          if(loop)
+          {
+
           }
           
 
@@ -285,12 +303,12 @@ $(function () {
 
         function playRecord(record_array)
         {
-             
+             console.log(record_array);
              if(record_array.length > 0)
              { 
-              console.log('in playrecord record-array is ' + record_array + 'the length is ' + record_array.length);
+              //console.log('in playrecord record-array is ' + record_array + 'the length is ' + record_array.length);
              let record = record_array.shift();
-             console.log('in playrecord record is ' + record);
+             //console.log('in playrecord record is ' + record);
 
              setTimeout(function ()
                {
@@ -303,6 +321,8 @@ $(function () {
         }
 
         playRecord(record_array);
+
+
 
         function add() 
         {
@@ -358,6 +378,8 @@ $(function () {
         save.onclick = function()
         {
           //console.log('something', record_array);
+
+          clearTimeout(t);
 
           songname = $('.songTitle').val();
           console.log(songname, typeof songname);

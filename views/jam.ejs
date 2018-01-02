@@ -15,13 +15,13 @@
 
     <!-- <div class="box"> BOX </div> -->
 
-     <div class="profile">
+     <!-- <div class="profile">
         <%= profile %>
     </div>
 
     <div class="player-scores">
         <% users.forEach(function(guy) { %>
-        <!-- <li><%= guy.name %> - <%= guy._id %></li> -->
+        <li><%= guy.name %> - <%= guy._id %></li>
         <li>
             <div class="scoreBox">
                 <h2><%= guy.name %></h2>
@@ -30,7 +30,7 @@
             </div>
         </li>
         <% }); %> 
-    </div>
+    </div> -->
  
     <!-- <div id="player2ScoreBox" class="scoreBox">
         <h2>THEM</h2>
@@ -40,13 +40,13 @@
 </div>
 
 
- <div class="start-info">
+ <!-- <div class="start-info">
     <h2>Howdy!! What are we going to play till?</h2>
     <form class="score-limit-form">
         <input type="text" name="score-limit" class="score-limit-text" placeholder="eg 1000">
         <button type="submit" class="submit-score-limit">Submit</button>
     </form>
-</div>
+</div> -->
 
 <style type="text/css">
         img {
@@ -71,21 +71,11 @@
     <button id="clear">clear</button>
     <button id="saveRecord">save</button>
     <input type="text" name="songTitle" class="songTitle" placeholder="Name your song here!!">
-    <button id="recordedSongs">see recorded songs</button>
+    <!-- <button id="recordedSongs">see recorded songs</button> -->
+    <a href="/profile">See recorded songs</a>
+    <button id="loop">loop</button>
 
-    <div id="songs">
-        <% songs.forEach(function(song) { %>
-        <li>
-            <div class="songBox">
-                <h2><%= song.songname %></h2>
-
-                <span class="span-song"><%= JSON.stringify(song.song) %></span>
-                <button class="playButton">Play</button>
-            </div>
-
-        </li>
-        <% }); %>
-    </div>
+    
 
 
 <!-- <div class="hi diff"></div> -->

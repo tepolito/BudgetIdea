@@ -39,6 +39,19 @@
     </div>
 
     <div class="row">
+        Songs
+        <div id="songs">
+                    <% songs.forEach(function(song) { %>
+                    <li>
+                        <div class="songBox">
+                            <h2><%= song.songname %></h2>
+
+                            <span class="span-song"><%= JSON.stringify(song.song) %></span>
+                            <button class="playButton">Play</button>
+                        </div>
+                    </li>
+                    <% }); %>
+                </div>
 
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
@@ -56,6 +69,8 @@
                 <% } else { %>
                     <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
+
+
 
             </div>
         </div>
@@ -144,8 +159,13 @@
         { $('#income').text(this.value) })
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-<script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/0.12.27/Tone.min.js"></script>
+    <script src="./scripts/Keyboard.js"></script>
+    <script src="./scripts/draggabilly.js"></script>
+    <script src="./scripts/StartAudioContext.js"></script>
+    <script src="./scripts/Interface.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

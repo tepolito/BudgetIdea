@@ -23,10 +23,9 @@ module.exports = function(app, passport) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
+        console.log('something silly');
         console.log(req.user);
-        res.render('profile.ejs', {
-            user : req.user
-        });
+        res.render('profile.ejs', {user : req.user, songs:req.user.songs});
     });
 
     // LOGOUT ==============================
@@ -218,7 +217,7 @@ app.post('/profile', isLoggedIn, (req, res) =>
         });
 })
 
-app.post('/all', isLoggedIn, (req,res) =>
+app.post('/jam', isLoggedIn, (req,res) =>
 {
     console.log(`the req.body.scoreAllTime is ${req.body.score}`);
     console.log(`the req.user.scoreAllTime is ${req.user.score}`); 
@@ -229,11 +228,11 @@ app.post('/all', isLoggedIn, (req,res) =>
     })
 })
 
-app.get('/all', (req,res) => 
+app.get('/jam', (req,res) => 
 {
     User.find().exec().then(users =>  
     {
-        res.render('all', {users:users, profile:req.user, songs:req.user.songs});   
+        res.render('jam', {users:users, profile:req.user});   
     })
 })
 
