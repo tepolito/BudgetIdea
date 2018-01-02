@@ -32,7 +32,9 @@ var userSchema = mongoose.Schema({
 
     score            : {type:Number, default:0},
 
-    name             : String
+    name             : String,
+
+    songs            : Array
 
 });
 

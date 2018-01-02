@@ -237,6 +237,23 @@ app.get('/all', (req,res) =>
     })
 })
 
+app.post('/saveRecord', isLoggedIn, (req,res) =>
+{
+    console.log(req.body, req.user);
+    User.update({_id:req.user._id}, {$push:{songs:req.body}}).exec().then().catch(err =>
+    {
+        throw err;
+    })
+})
+
+/*app.get('/playRecord', isLoggedIn, (req,res) =>
+{
+    User.find({_id: req.user._id}).exec().then(curUser =>
+    {
+        res.render('all', {songs:songs});
+    })
+})*/
+
 };
 
 // route middleware to ensure user is logged in

@@ -49,6 +49,12 @@ li{
 	left: 5%;
 }
 
+.Keyboard{
+	height: 100px;
+	width: 100%;
+	position: relative;
+}
+
 @keyframes moveer{
 
 	0%{background: blue;}

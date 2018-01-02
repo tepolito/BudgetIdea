@@ -32,6 +32,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 
+process.on('SIGTERM', function()
+{
+  console.log('SIGTERM');
+})
+
+process.on('uncaughtException', function()
+{
+  console.log('uncaughtException');
+})
+
 // required for passport
 app.use(session({
     secret: 'ilovescotchscotchyscotchscotch', // session secret
@@ -47,6 +57,10 @@ require('./app/routes.js')(app, passport); // load our routes and pass in our ap
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
+http.listen(port, function(){
+  console.log('listening on *:' + port);
+});  
 
 io.on('connection', function(socket)
 {
@@ -81,7 +95,7 @@ io.on('connection', function(socket)
   { 
   	//$('#box').addClass('move1');
   	io.emit('box move', tp, lft, userId, score, data);    
-  })  
+  })    
 
   socket.on('winning',function()
   { 
@@ -100,9 +114,7 @@ io.on('connection', function(socket)
 
 });
 
-http.listen(port, function(){
-  console.log('listening on *:' + port);
-});
+
 
 // launch ======================================================================
 //app.listen(port);

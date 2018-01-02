@@ -182,6 +182,8 @@ $(function () {
           });
         })
 
+        let attackTime = 0;
+        let recording = false;
 
         var piano = new Tone.Sampler({
             'A0' : 'A0.[mp3|ogg]',
@@ -230,7 +232,17 @@ $(function () {
         socket.on("keydown", function(note)
         {
           console.log(note);
-            piano.triggerAttack(note);
+          
+          if(recording)
+          {
+            let time = Date.now() - attackTime;
+            record_array.push({note: note, attack: time})
+            attackTime = Date.now();
+            console.log(record_array);
+          }
+          
+
+          piano.triggerAttack(note);
         })
             
         keyboard.keyUp = function (note) 
@@ -247,10 +259,107 @@ $(function () {
         Interface.Loader();
 
 
+        /*setInterval(function()
+        {
+          piano.triggerAttack('A0');
+        },500)*/
+
+        var h1 = document.getElementsByTagName('h1')[0],
+        start = document.getElementById('start'),
+        stop = document.getElementById('stop'),
+        clear = document.getElementById('clear'),
+        save = document.getElementById('saveRecord'),
+        seconds = 0, minutes = 0, hours = 0,
+        t;
+        var record_array = [{note: 'C8', attack: 1000}, {note: 'A0', attack: 5000}, {note: 'A2', attack: 2500}];
+
+        function playRecord(record_array)
+        {
+             
+             if(record_array.length > 0)
+             { 
+             let record = record_array.shift();
+
+             setTimeout(function ()
+               {
+                  piano.triggerAttack(record.note);
+                  console.log(record);
+                  playRecord(record_array);
+              }, record.attack);
+            }
+        }
+
+        playRecord(record_array);
+
+        function add() 
+        {
+          seconds++;
+          if (seconds >= 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes >= 60) {
+              minutes = 0;
+              hours++;
+            }
+          }
+
+          h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+          timer();
+        }
+        function timer() 
+        {
+          t = setTimeout(add, 1000);    
+        }
+        timer();
 
 
+        /* Start button */
+        start.onclick = function()
+        {
+          recording = true;
+          attackTime = Date.now();
+          seconds = 0;
+          minutes = 0 ;
+          hours = 0;
+          timer();
 
+          record_array = [];
+        }
 
+        /* Stop button */
+        stop.onclick = function() 
+        {
+          clearTimeout(t);
+          recording = false;
+        }
+
+        /* Clear button */
+        clear.onclick = function() 
+        {
+          h1.textContent = "00:00:00";
+          recording = false;
+        }
+    
+        save.onclick = function()
+        {
+          //console.log('something', record_array);
+
+          songname = $('.songTitle').val();
+          console.log(songname, typeof songname);
+
+            $.ajax({
+            type: 'POST',
+            data: JSON.stringify({songname: songname, song: record_array}),
+            contentType: 'application/json',
+            url: '/saveRecord',             
+            success: function(data) 
+            {
+              console.log('success');
+              console.log(JSON.stringify(data));
+            }
+          });
+        }
 
 
       });
