@@ -1,5 +1,5 @@
 {
-  "name": "node-authentication",
+  "name": "MulitplayerGame",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"

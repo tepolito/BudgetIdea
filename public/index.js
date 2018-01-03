@@ -2,6 +2,8 @@ $(function () {
 
   //var User = require('../app/models/user');
 
+        var socket = io(); 
+
         $('#save').on('click', function (e)
         {
           let val = $('#name').text();
@@ -99,7 +101,7 @@ $(function () {
           if(loop)
           {
             let time = Date.now() - attackTime;
-            looparr.push({note: note, attack: time})
+            looparr.push({note: note, attack: time, inLoop: true})
             attackTime = Date.now();
           }
           
@@ -276,13 +278,6 @@ $(function () {
               console.log(JSON.stringify(data));
             }
           });
-        }
-
-        recordedSongs.onclick = function()
-        {
-          console.log('recordedSongs button works');
-
-          $('#songs').show();
         }
 
         $('.songBox').on('click', '.playButton', function (e)
