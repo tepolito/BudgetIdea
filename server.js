@@ -102,14 +102,15 @@ io.on('connection', function(socket)
     io.emit('winning', $('.box').hide());  
   })
 
-  socket.on("keydown", function(note)
+  socket.on("keydown", function(key)
   {
-    io.emit("keydown", note);
+    console.log(key);
+    io.emit("keydown", key);
   })
 
-  socket.on("keyup", function(note)
+  socket.on("keyup", function(key)
   {
-    io.emit("keyup", note);
+    io.emit("keyup", key);
   })
 
 });

@@ -81,51 +81,60 @@ $(function () {
 
         keyboard.keyDown = function (note) 
         {
-
-          socket.emit("keydown", note);
+          let key = {note:note};
+          socket.emit("keydown", key);
           
 
         };
-        socket.on("keydown", function(note)
+        socket.on("keydown", function(key)
         {
-          console.log(note);
+         // console.log(key);
           
           if(recording)
           {
             let time = Date.now() - attackTime;
-            record_array.push({note: note, attack: time})
+            record_array.push({note: key.note, attack: time})
             attackTime = Date.now();
             console.log(record_array);
           }
 
-          if(loop)
+          console.log(loop);
+          if(loop && !key.inLoop)
           {
             let time = Date.now() - attackTime;
-            looparr.push({note: note, attack: time, inLoop: true})
+            looparr.push({note: key.note, attack: time, inLoop: true})
             attackTime = Date.now();
           }
           
 
-          piano.triggerAttack(note);
+          piano.triggerAttack(key.note);
         })
             
         keyboard.keyUp = function (note) 
         {
-
-          socket.emit("keyup", note); 
+          let key = {note:note}
+          socket.emit("keyup", key); 
             
         };
 
-        socket.on("keyup", function(note)
+        socket.on("keyup", function(key)
         {
           if(recording)
           {
-            let time = Date.now() - releaseTime;
-            record_array.push({note: note, release: time})
+            let time = Date.now() - attackTime;
+            record_array.push({note: key.note, release: time})
             releaseTime = Date.now();
             console.log(record_array);
           }
-          piano.triggerRelease(note);
+
+          if(loop && !key.inLoop)
+          {
+            let time = Date.now() - attackTime;
+            looparr.push({note: key.note, release: time, inLoop: true})
+            releaseTime = Date.now();
+          }
+
+          piano.triggerRelease(key.note);
         })
         Interface.Loader();
 
@@ -144,24 +153,37 @@ $(function () {
         seconds = 0, minutes = 0, hours = 0,
         t;
         var record_array = [/*{note: 'C8', attack: 1000}, {note: 'A0', attack: 5000}, {note: 'A2', attack: 2500}*/];
-        var looparr = [{note: 'C8', attack: 100}, {note: 'A0', attack: 500}, {note: 'A2', attack: 250}];
+        var looparr = [{note: 'C8', attack: 100, release: 200, inLoop:true}, /*{note: 'A0', attack: 500}, {note: 'A2', attack: 250}*/];
+        var allTimeouts = [];
 
         function playLoop(loop_array)
         {
-             console.log(loop_array);
+             //console.log(loop_array);
              if(loop_array.length > 0)
              { 
               //console.log('in playrecord record-array is ' + record_array + 'the length is ' + record_array.length);
              let loops = loop_array.shift();
              //console.log('in playrecord record is ' + record);
 
-             setTimeout(function ()
+             let t = setTimeout(function ()
                {
-                  socket.emit('keydown', loops.note);
+                  socket.emit('keydown', loops);
                   //piano.triggerRelease(record.note);
-                  
+                  console.log('playloop running', loops);
                   playLoop(loop_array);
+
+                    let r = setTimeout(function ()
+                    {
+                      socket.emit('keyup', loops);
+                    //piano.triggerRelease(record.note);
+                    
+                    }, loops.release);
+                    allTimeouts.push(r)
+
               }, loops.attack);
+             allTimeouts.push(t)
+
+             
             }
         }
 
@@ -188,23 +210,33 @@ $(function () {
 
         function startInterval()
         {
+          attackTime = Date.now();
+          releaseTime = Date.now();
+
           return setInterval(function()
           {
             console.log('somtehitn', looparr)
+            window.looparr = looparr;
             let loop_array = looparr.slice();
 
             playLoop(loop_array);
-          }, 4000);
+          }, 1000);
           
         }
 
         var int = startInterval();
+        console.log(int);
 
         $('#clearLoop').on('click', function (e)
         {
           clearInterval(int);
           looparr = [];
+          allTimeouts.forEach(timeout =>
+          {
+            clearTimeout(timeout);
+          })
           int = startInterval();
+          console.log(int);
         })
 
         function add() 
