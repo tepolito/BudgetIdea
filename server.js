@@ -103,8 +103,8 @@ io.on('connection', function(socket)
   })
 
   socket.on("keydown", function(key)
-  {
-    console.log(key);
+  {  
+    console.log(key); 
     io.emit("keydown", key);
   })
 

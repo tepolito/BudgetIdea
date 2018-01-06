@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>JamSesh Profile</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
     <style>
         body         { padding-top:80px; word-wrap:break-word; }
     </style>
@@ -12,7 +13,7 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <h1><span class="fa fa-anchor"></span> My Profile</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
@@ -34,24 +35,26 @@
 
     <div>
         <h1>Profile Page</h1>
-        <h4 contenteditable="true" id="name">name <%= user.name %></h4>
+        <h2 contenteditable="true" id="name">Name: </h2>
+        <h2 contenteditable="true" id="userName"> <%= user.name %></h2>
         <button id="save">Save</button>        
     </div>
 
     <div class="row">
-        Songs
-        <div id="songs">
+        <div class="recordedSongs well">
+            <h2 id="myRecordedSongs">My Recorded Songs</h2>
+                <div id="songs">
                     <% songs.forEach(function(song) { %>
                     <li>
                         <div class="songBox">
-                            <h2><%= song.songname %></h2>
-
-                            <span class="span-song"><%= JSON.stringify(song.song) %></span>
+                            <h3 class="profileSongName"><%= song.songname %></h3>
+        
                             <button class="playButton">Play</button>
                         </div>
                     </li>
                     <% }); %>
                 </div>
+        </div>
 
         <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
@@ -60,9 +63,9 @@
 
                 <% if (user.local.email) { %>
                     <p>
-                        <strong>id</strong>: <%= user._id %><br>
+                        <!-- <strong>id</strong>: <%= user._id %><br> -->
                         <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
+                        <!-- <strong>password</strong>: <%= user.local.password %> -->
                     </p>
                     
                     <a href="/unlink/local" class="btn btn-default">Unlink</a>

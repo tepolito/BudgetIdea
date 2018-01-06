@@ -6,7 +6,7 @@ $(function () {
 
         $('#save').on('click', function (e)
         {
-          let val = $('#name').text();
+          let val = $('#userName').text();
           console.log(`val is ${val}`);
 
           var data = {'name':val};

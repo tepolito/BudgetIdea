@@ -7,3 +7,37 @@
 .loopOn {
 	background: red;
 }
+
+.playButton{
+	display: inline;
+}
+
+.profileSongName{
+	display: inline-block;
+}
+
+li{
+	list-style: none;
+}
+
+#name{
+	display: inline-block;
+}
+
+#userName{
+	display: inline;
+}
+
+#save{
+	display: block;
+}
+
+.recordedSongs{
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+#myRecordedSongs{
+	text-align: center;
+}
