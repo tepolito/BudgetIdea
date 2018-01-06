@@ -37,7 +37,7 @@
         <h1>Profile Page</h1>
         <h2 contenteditable="true" id="name">Name: </h2>
         <h2 contenteditable="true" id="userName"> <%= user.name %></h2>
-        <button id="save">Save</button>        
+        <button id="save" class="btn btn-default btn-sm">Save</button>        
     </div>
 
     <div class="row">
@@ -145,22 +145,12 @@
         </div>
     </div>
 
-    <div class="text-center">
-        <p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-        <p>Visit the <a href="http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local">tutorial</a>.</p>
-    </div>
-
 </div>
 
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
-
-<script>
-    $('#slider').on('change', function()
-        { $('#income').text(this.value) })
-</script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
