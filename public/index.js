@@ -324,8 +324,9 @@ $(function () {
           console.log(record_array);
 
           playRecord(record_array);
-
         })
+
+        
 
 
       });

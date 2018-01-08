@@ -243,6 +243,11 @@ app.post('/saveRecord', isLoggedIn, (req,res) =>
     { 
         throw err;    
     })
+})
+
+app.get("/rooms", isLoggedIn, (req,res)=>
+{
+    res.render('rooms')
 })  
 
 };
