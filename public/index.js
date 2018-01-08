@@ -1,7 +1,5 @@
 $(function () {
 
-  //var User = require('../app/models/user');
-
         var socket = io(); 
 
         $('#save').on('click', function (e)
