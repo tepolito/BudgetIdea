@@ -14,28 +14,15 @@
 
     <div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> My Profile</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <nav>
+            <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+            <a href="/jam" class="btn btn-default btn-sm">Solo Jam</a>
+        </nav>
     </div>
-
-    <!-- <form action="/addInfo" method="post">
-        <div class="form-group">
-            <label>Annual Income</label>
-            <input type="text" class="form-control" name="annual-income">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
-        </div>
-        <strong>income</strong>: <%= user.income %>
-        <div id="income"></div>
-        <input id="slider" type="range" min="0" max="1000000" step="1000" name="income-slider">
-
-        <button type="submit" class="btn btn-warning btn-lg">Submit</button>
-    </form> -->
 
     <div>
         <h1>Profile Page</h1>
-        <h2 contenteditable="true" id="name">Name: </h2>
+        <h2 id="name">User Name: </h2>
         <h2 contenteditable="true" id="userName"> <%= user.name %></h2>
         <button id="save" class="btn btn-default btn-sm">Save</button>        
     </div>
