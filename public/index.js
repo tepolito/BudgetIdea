@@ -86,7 +86,7 @@ $(function () {
         };
         socket.on("keydown", function(key)
         {
-         // console.log(key);
+          console.log(key);
           
           if(recording)
           {
@@ -117,6 +117,7 @@ $(function () {
 
         socket.on("keyup", function(key)
         {
+          console.log(key);
           if(recording)
           {
             let time = Date.now() - attackTime;
@@ -151,7 +152,7 @@ $(function () {
         seconds = 0, minutes = 0, hours = 0,
         t;
         var record_array = [/*{note: 'C8', attack: 1000}, {note: 'A0', attack: 5000}, {note: 'A2', attack: 2500}*/];
-        var looparr = [{note: 'C8', attack: 100, release: 200, inLoop:true}, /*{note: 'A0', attack: 500}, {note: 'A2', attack: 250}*/];
+        var looparr = [{note: 'C8', attack: 100, inLoop:true}, {note: 'C8', release: 100, inLoop:true} /*{note: 'A0', attack: 500}, {note: 'A2', attack: 250}*/];
         var allTimeouts = [];
 
         function playLoop(loop_array)
@@ -228,6 +229,8 @@ $(function () {
         $('#clearLoop').on('click', function (e)
         {
           clearInterval(int);
+          console.log('looparr befor empty');
+          console.log(looparr);
           looparr = [];
           allTimeouts.forEach(timeout =>
           {
