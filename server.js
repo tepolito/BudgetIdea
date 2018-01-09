@@ -62,9 +62,12 @@ http.listen(port, function(){
   console.log('listening on *:' + port);
 });  
 
+ACTIVE_ROOMS = [];
+
 io.on('connection', function(socket)
 {
 	console.log('we good');
+  console.log(ACTIVE_ROOMS);
 
     
   /*io.engine === io.eio // => true
@@ -116,6 +119,8 @@ io.on('connection', function(socket)
   socket.on('createRoom', function(room)
   {
     console.log(room);
+    ACTIVE_ROOMS.push(room);
+    console.log(ACTIVE_ROOMS);
 
     socket.room = room;
 
@@ -126,6 +131,26 @@ io.on('connection', function(socket)
     socket.emit('message', msg);
 
     io.emit('createRoom', room);
+  })
+
+  socket.on('joinRoom', function (room)
+  {
+    console.log(`trying to join room: ${room}`);
+
+    socket.room = room;
+
+    socket.join = room;
+
+    msg = `you connected to ${room}`;
+
+    socket.emit('message', msg);
+
+    io.emit('joinRoom', room);
+  })
+
+  socket.on('load', function()
+  {
+    socket.emit('load', ACTIVE_ROOMS);
   })
 
 });
