@@ -36,7 +36,8 @@
                     <li>
                         <div class="songBox">
                             <h3 class="profileSongName"><%= song.songname %></h3>
-        
+                            
+                            <span class="span-song"><%= song.song %></span>
                             <button class="playButton">Play</button>
                         </div>
                     </li>
@@ -133,6 +134,11 @@
         </div>
     </div>
 
+    <div id="Content" style="display:none">
+        
+        <div id="Keyboard"></div>
+    </div>
+
 </div>
 
 <script
@@ -147,6 +153,6 @@
     <script src="./scripts/draggabilly.js"></script>
     <script src="./scripts/StartAudioContext.js"></script>
     <script src="./scripts/Interface.js"></script>
-    <script src="index.js"></script>
+    <script src="profile-js.js"></script>
 </body>
 </html>

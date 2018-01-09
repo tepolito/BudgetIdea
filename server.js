@@ -113,6 +113,21 @@ io.on('connection', function(socket)
     io.emit("keyup", key);
   })
 
+  socket.on('createRoom', function(room)
+  {
+    console.log(room);
+
+    socket.room = room;
+
+    socket.join(room);
+
+    msg = `you connected to room: ${room}`;  
+
+    socket.emit('message', msg);
+
+    io.emit('createRoom', room);
+  })
+
 });
 
 

@@ -41,3 +41,27 @@ li{
 #myRecordedSongs{
 	text-align: center;
 }
+
+#activeRooms{
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+.activeRoomName{
+	position: relative;
+    left: 0;
+    margin-right: 25%;
+}
+
+.joinRoom{
+	position: relative;
+    right: 0;
+    margin-left: 25%;
+}
+
+.activeRoom{
+	margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
