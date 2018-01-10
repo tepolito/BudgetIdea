@@ -72,8 +72,17 @@ $(function () {
         $('#loop').on('click', function()
         {
            loop = !loop;
+           console.log('loop is' + loop);
 
            $(this).toggleClass('loopOn');
+
+           setTimeout(function()
+           {
+              loop = !loop;
+              console.log('loop is now ' + loop);
+
+              $('#loop').toggleClass('loopOn');
+           },2000);
 
            if(loop)
            {
