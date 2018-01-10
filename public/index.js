@@ -74,6 +74,7 @@ $(function () {
            loop = !loop;
 
            $(this).toggleClass('loopOn');
+           int = startInterval();
 
         })
 
@@ -233,7 +234,7 @@ $(function () {
           {
             clearTimeout(timeout);
           })
-          int = startInterval();
+          //int = startInterval();
           console.log(int);
         })
 
