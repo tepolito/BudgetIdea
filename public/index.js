@@ -225,7 +225,7 @@ $(function () {
             let loop_array = looparr.slice();
 
             playLoop(loop_array);
-          }, 1000);
+          }, 2000);
           
         }
 
