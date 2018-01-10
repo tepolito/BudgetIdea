@@ -74,7 +74,12 @@ $(function () {
            loop = !loop;
 
            $(this).toggleClass('loopOn');
-           int = startInterval();
+
+           if(loop)
+           {
+            int = startInterval();
+           }
+           
 
         })
 
