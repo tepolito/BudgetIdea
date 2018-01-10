@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JamSesh</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <style>
+        body         { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+	<div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Rooms</h1>
+        <nav>
+            <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+            <a href="/profile" class="btn btn-default btn-sm">To Profile</a>
+        </nav>
+    </div>
+
+    <input type="text" name="createdRoomName" id="createdRoomNameText" placeholder="Enter a Room name here">
+
+    <button id="createRoomButton">Create Room</button>
+
+    <div id="activeRooms" class="well">
+    	
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	<script src="rooms-js.js"></script>
+</body>
+	
+</html>

@@ -1,8 +1,8 @@
 var User       = require('../app/models/user');
+var Song       = require('../app/models/song');
 
 module.exports = function(app, passport) {
 
-    var User       = require('../app/models/user');
 
 // normal routes ===============================================================
 
@@ -242,6 +242,22 @@ app.post('/saveRecord', isLoggedIn, (req,res) =>
     User.update({_id:req.user._id}, {$push:{songs:req.body}}).exec().then().catch(err =>
     { 
         throw err;    
+    })
+
+    let song = new Song(req.body);
+
+    song['createdBy'] = req.user._id;
+
+    song.save();
+
+})
+
+app.get("/allSongs", (req,res)=>
+{
+    Song.find().exec().then(songs =>  
+    {
+        console.log(songs);
+        res.render('allSongs', {songs:songs});   
     })
 })
 
