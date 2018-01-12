@@ -228,11 +228,11 @@ app.post('/jam', isLoggedIn, (req,res) =>
     })
 })
 
-app.get('/jam', (req,res) => 
+app.get('/newJam', (req,res) => 
 {
     User.find().exec().then(users =>  
     {
-        res.render('jam', {users:users, profile:req.user});   
+        res.render('newJam', {users:users, profile:req.user});   
     })
 })
 

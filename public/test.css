@@ -10,6 +10,10 @@
 
 .playButton{
 	display: inline;
+	text-align: right;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 
 .profileSongName{
@@ -70,4 +74,9 @@ li{
 	margin-right: auto;
 	margin-left: auto;
 	width: 80%;
+}
+
+.songBox{
+	position: relative;
+	text-align: justify;
 }
