@@ -158,14 +158,14 @@ $(function () {
           piano.triggerAttack('A0');
         },500)*/
 
-        var h1 = document.getElementsByTagName('h1')[0],
-        start = document.getElementById('start'),
-        stop = document.getElementById('stop'),
-        clear = document.getElementById('clear'),
+        //var h1 = document.getElementsByTagName('h1')[0],
+        startRec = document.getElementById('start'),
+        stopRec = document.getElementById('stop'),
+        //clear = document.getElementById('clear'),
         save = document.getElementById('saveRecord'),
-        recordedSongs = document.getElementById('recordedSongs'),
-        seconds = 0, minutes = 0, hours = 0,
-        t;
+        recordedSongs = document.getElementById('recordedSongs')
+        /*seconds = 0, minutes = 0, hours = 0,
+        t;*/
         var record_array = [/*{note: 'C8', attack: 1000}, {note: 'A0', attack: 5000}, {note: 'A2', attack: 2500}*/];
         var looparr = [{note: 'C8', attack: 100, inLoop:true}, {note: 'C8', release: 100, inLoop:true} /*{note: 'A0', attack: 500}, {note: 'A2', attack: 250}*/];
         var allTimeouts = [];
@@ -255,7 +255,7 @@ $(function () {
           console.log(int);
         })
 
-        function add() 
+        /*function add() 
         {
           seconds++;
           if (seconds >= 60) {
@@ -275,57 +275,67 @@ $(function () {
         {
           t = setTimeout(add, 1000);    
         }
-        timer();
+        timer();*/
 
 
         /* Start button */
-        start.onclick = function()
+        startRec.onclick = function()
         {
           recording = true;
           attackTime = Date.now();
           releaseTime = Date.now();
-          seconds = 0;
+          /*seconds = 0;
           minutes = 0 ;
           hours = 0;
-          timer();
+          timer();*/
 
           record_array = [];
         }
 
         /* Stop button */
-        stop.onclick = function() 
+        stopRec.onclick = function() 
         {
-          clearTimeout(t);
+          //clearTimeout(t);
           recording = false;
         }
 
         /* Clear button */
-        clear.onclick = function() 
+        /*clear.onclick = function() 
         {
           h1.textContent = "00:00:00";
           recording = false;
-        }
+        }*/
     
         save.onclick = function()
         {
           //console.log('something', record_array);
 
-          clearTimeout(t);
+         // clearTimeout(t);
 
           songname = $('.songTitle').val();
           console.log(songname, typeof songname);
 
-            $.ajax({
-            type: 'POST',
-            data: JSON.stringify({songname: songname, song: record_array}),
-            contentType: 'application/json',
-            url: '/saveRecord',             
-            success: function(data) 
+          if(songname !== '')
+          {
+            $.ajax(
             {
-              console.log('success');
-              console.log(JSON.stringify(data));
+              type: 'POST',
+              data: JSON.stringify({songname: songname, song: record_array}),
+              contentType: 'application/json',
+              url: '/saveRecord',             
+              success: function(data) 
+              {
+                console.log('success');
+                console.log(JSON.stringify(data));
+              }
+            });
+          }
+          else
+            {
+              alert('enter a song name!!');
             }
-          });
+
+            
         }
 
         $('.songBox').on('click', '.playButton', function (e)

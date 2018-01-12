@@ -65,3 +65,9 @@ li{
     margin-right: auto;
     width: 50%;
 }
+
+.allSongs-songList{
+	margin-right: auto;
+	margin-left: auto;
+	width: 80%;
+}

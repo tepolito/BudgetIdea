@@ -18,11 +18,12 @@
         </nav>
     </div>
 
-    <div id="songs">
+    <div id="songs" class="well text-center allSongs-songList">
         <% songs.forEach(function(song) { %>
         <li>
             <div class="songBox">
                 <h3 class="profileSongName"><%= song.songname %></h3>
+                <h4 class="songAuthor">Created by: <%= song.createdBy %></h4>
                 
                 <span class="span-song" style="display:none"><%= JSON.stringify(song.song) %></span>
                 <button class="playButton">Play</button>
