@@ -31,7 +31,7 @@ function playLoop(){
       console.log(sound);
       //new Audio(`./drumkit/${sound.key}.ogg`).play()
       
-      if(sound.attack)
+      if(sound.attack)  //sdf
       {
         piano.triggerAttack(sound.key);
       }
