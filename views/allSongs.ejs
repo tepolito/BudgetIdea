@@ -13,8 +13,8 @@
 	<div class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Songs</h1>
         <nav>
-            <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-            <a href="/profile" class="btn btn-default btn-sm">To Profile</a>
+            <a href="/logout" class="btn btn-info btn-sm">Logout</a>
+            <a href="/profile" class="btn btn-primary btn-sm">To Profile</a>
         </nav>
     </div>
 
@@ -26,7 +26,7 @@
                 <h4 class="songAuthor">Created by: <%= song.createdBy %></h4>
                 
                 <span class="span-song" style="display:none"><%= JSON.stringify(song.song) %></span>
-                <button class="playButton">Play</button>
+                <button class="playButton btn btn-info btn-sm">Play</button>
             </div>
         </li>
         <% }); %>

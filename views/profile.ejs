@@ -13,12 +13,12 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> My Profile</h1>
+        <h1><span class="fa music-note"></span> My Profile</h1>
         <nav>
-            <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-            <a href="/jam" class="btn btn-default btn-sm">Solo Jam</a>
-            <a href="/rooms" class="btn btn-default btn-sm">Rooms</a>
-            <a href="/allSongs" class="btn btn-default btn-sm">All Songs</a> 
+            <a href="/logout" class="btn btn-info btn-sm">Logout</a>
+            <a href="/jam" class="btn btn-primary btn-sm">Solo Jam</a>
+            <a href="/rooms" class="btn btn-primary btn-sm">Rooms</a>
+            <a href="/allSongs" class="btn btn-primary btn-sm">All Songs</a> 
         </nav>
     </div>
 
@@ -26,7 +26,7 @@
         <h1>Profile Page</h1>
         <h2 id="name">User Name: </h2>
         <h2 contenteditable="true" id="userName"> <%= user.name %></h2>
-        <button id="save" class="btn btn-default btn-sm">Save</button>        
+        <button id="save" class="btn btn-info btn-sm">Save</button>        
     </div>
 
     <div class="row">
@@ -39,23 +39,23 @@
                             <h3 class="profileSongName"><%= song.songname %></h3>
                             
                             <span class="span-song" style="display:none"><%= JSON.stringify(song.song) %></span>
-                            <button class="playButton">Play</button>
+                            <button class="playButton btn btn-info btn-sm">Play</button>
                         </div>
                     </li>
                     <% }); %>
                 </div>
         </div>
 
-        <!-- LOCAL INFORMATION -->
+        <!-- LOCAL INFORMATION
         <div class="col-sm-6">
             <div class="well">
                 <h3><span class="fa fa-user"></span> Local</h3>
 
                 <% if (user.local.email) { %>
                     <p>
-                        <!-- <strong>id</strong>: <%= user._id %><br> -->
+                        <!-- <strong>id</strong>: <%= user._id %><br> 
                         <strong>email</strong>: <%= user.local.email %><br>
-                        <!-- <strong>password</strong>: <%= user.local.password %> -->
+                        <!-- <strong>password</strong>: <%= user.local.password %>
                     </p>
                     
                     <a href="/unlink/local" class="btn btn-default">Unlink</a>
@@ -68,12 +68,12 @@
             </div>
         </div>
 
-        <!-- FACEBOOK INFORMATION -->
+        <!-- FACEBOOK INFORMATION
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
 
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
+                <!-- check if the user has this token (is the user authenticated with this social account)
                 <% if (user.facebook.token) { %>
                     <p>
                         <strong>id</strong>: <%= user.facebook.id %><br>
@@ -92,7 +92,7 @@
     </div>
     <div class="row">
 
-        <!-- TWITTER INFORMATION -->
+        <!-- TWITTER INFORMATION
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
@@ -113,7 +113,7 @@
             </div>
         </div>
 
-        <!-- GOOGLE INFORMATION -->
+        <!-- GOOGLE INFORMATION
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
@@ -132,7 +132,7 @@
                 <% } %>
 
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div id="Content" style="display:none">
