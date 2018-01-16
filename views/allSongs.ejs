@@ -14,7 +14,7 @@
         <h1><span class="fa fa-anchor"></span> Songs</h1>
         <nav>
             <a href="/logout" class="btn btn-info btn-sm">Logout</a>
-            <a href="/profile" class="btn btn-primary btn-sm">To Profile</a>
+            <a href="/profile" class="btn btn-info btn-sm">To Profile</a>
         </nav>
     </div>
 
@@ -24,6 +24,8 @@
             <div class="songBox">
                 <h3 class="profileSongName"><%= song.songname %></h3>
                 <h4 class="songAuthor">Created by: <%= song.createdBy %></h4>
+
+                <div class="wave"></div>
                 
                 <span class="span-song" style="display:none"><%= JSON.stringify(song.song) %></span>
                 <button class="playButton btn btn-info btn-sm">Play</button>

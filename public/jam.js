@@ -1,4 +1,4 @@
-$(function()
+function piano()
 {
   var loop; //the interval
 var playback = [] //the notes
@@ -6,13 +6,13 @@ var recordToLoop = false;  //determines
 var loopTime = 0; 
 var loopTimeInt; 
 //Start & Stop loop 
-$('#loop').click(function(){ startLoop() })
+$('#piano #loop').click(function(){ startLoop() })
 //$('#pause-loop').click(function(){ pauseLoop() })
-$('#clear-loop').click(function(){ clearLoop() })
+$('#piano #clear-loop').click(function(){ clearLoop() })
 function incrementLoopTime(){
   loopTimeInt = setInterval(function(){
     loopTime+=10;
-    $('#loopTime').text(loopTime)   
+    $('#paino #loopTime').text(loopTime)   
   },10) 
 }
 function startLoop(){
@@ -34,16 +34,19 @@ function playLoop(){
       if(sound.attack)  //sdf
       {
         piano.triggerAttack(sound.key);
+        $('.visualizer').css({'width':sound.time+'px'});
       }
       else
       {
         piano.triggerRelease(sound.key);
+        $('.visualizer').css({'width':50+'px'});
       }
 
     }, sound.time)    
     
   })
 }
+
 function clearLoop()
 {
   clearInterval(loop) 
@@ -159,4 +162,77 @@ var piano = new Tone.Sampler({
         Interface.Loader();
 
 
+};
+
+
+$(document).ready(function(){
+  piano();
+  piano2();
 });
+
+
+
+
+function piano2()
+{
+  var loop; //the interval
+var playback = [] //the notes
+var recordToLoop = false;  //determines
+var loopTime = 0; 
+var loopTimeInt; 
+//Start & Stop loop 
+$('#drums #loop').click(function(){ startLoop() })
+//$('#pause-loop').click(function(){ pauseLoop() })
+$('#drums #clear-loop').click(function(){ clearLoop() })
+function incrementLoopTime(){
+  loopTimeInt = setInterval(function(){
+    loopTime+=10;
+    $('#drums #loopTime').text(loopTime)   
+  },10) 
+}
+function startLoop(){
+  clearLoop() 
+  recordToLoop = true;
+  incrementLoopTime();
+  loop = setInterval(function(){
+    console.log('play')
+    playLoop(); 
+    loopTime = 0;
+  },2000)
+}
+function playLoop(){
+  playback.forEach(function(sound){
+    setTimeout(function(s){
+      console.log(sound);
+      new Audio(`./drumkit/${sound.key}.ogg`).play()
+
+    }, sound.time)    
+    
+  })
+}
+
+function clearLoop()
+{
+  clearInterval(loop) 
+  clearInterval(loopTimeInt) 
+  recordToLoop = false; 
+  playback = []; 
+  loopTime = 0; 
+}
+
+$('.sounds button').click(function()
+{
+  console.log(this.name);
+  let sound = this.name;  
+  new Audio(`./drumkit/${sound}.ogg`).play()
+  if(recordToLoop){
+    playback.push({
+      'key':sound,
+      'attack': loopTime 
+    })
+  }
+  
+  
+})
+
+};

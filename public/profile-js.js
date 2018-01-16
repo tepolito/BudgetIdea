@@ -65,9 +65,15 @@ $(function()
         {
           console.log(this);
 
-          console.log($(this).siblings('.span-song'));
+          console.log($(this).siblings('.wave'));
 
           newSong = JSON.parse($(this).siblings('.span-song').text());
+
+          var wavesurfer = WaveSurfer.create({container: '.wave', waveColor: 'darkorange'});
+
+          wavesurfer.load('./audio/salamander/A0.mp3');
+
+          wavesurfer.play();
 
           record_array = [];
           record_array = newSong;
@@ -76,4 +82,6 @@ $(function()
 
           playRecord(record_array);
         })
+
+
 });

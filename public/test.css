@@ -95,3 +95,10 @@ li{
 	color: darkorange;
 	background: ghostwhite;
 }
+
+.visualizer{
+	width: 50px;
+	background: green;
+	height: 50px;
+	transition: all .5s;
+}
