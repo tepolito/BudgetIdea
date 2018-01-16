@@ -1,3 +1,8 @@
+body{
+	background: darkorange;
+	color: ghostwhite;
+}
+
 .Keyboard{
 	height: 100px;
 	width: 100%;
@@ -79,4 +84,14 @@ li{
 .songBox{
 	position: relative;
 	text-align: justify;
+}
+
+.well{
+	color: darkorange;
+	background: ghostwhite;
+}
+
+.jumbotron{
+	color: darkorange;
+	background: ghostwhite;
 }
