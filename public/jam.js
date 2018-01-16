@@ -206,7 +206,7 @@ function playLoop(){
       console.log(sound);
       new Audio(`./drumkit/${sound.key}.ogg`).play()
 
-    }, sound.time)    
+    }, sound.attack)    
     
   })
 }
