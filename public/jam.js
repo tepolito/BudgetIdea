@@ -1,28 +1,29 @@
 function piano()
 {
-  var loop; //the interval
+  var loopPiano; //the interval
 var playback = [] //the notes
 var recordToLoop = false;  //determines
-var loopTime = 0; 
-var loopTimeInt; 
+var loopTimePiano = 0; 
+var loopTimeIntPiano; 
 //Start & Stop loop 
-$('#piano #loop').click(function(){ startLoop() })
+$('#piano #loopPiano').click(function(){ startLoop() })
 //$('#pause-loop').click(function(){ pauseLoop() })
-$('#piano #clear-loop').click(function(){ clearLoop() })
+$('#piano #clear-loopPiano').click(function(){ clearLoop() })
 function incrementLoopTime(){
-  loopTimeInt = setInterval(function(){
-    loopTime+=10;
-    $('#paino #loopTime').text(loopTime)   
+  loopTimeIntPiano = setInterval(function(){
+    loopTimePiano+=10;
+    //console.log(`piano loop time ${loopTimePiano}`);
+    $('#loopTimePiano').text(loopTimePiano)   
   },10) 
 }
 function startLoop(){
   clearLoop() 
   recordToLoop = true;
   incrementLoopTime();
-  loop = setInterval(function(){
+  loopPiano = setInterval(function(){
     console.log('play')
     playLoop(); 
-    loopTime = 0;
+    loopTimePiano = 0;
   },2000)
 }
 function playLoop(){
@@ -49,11 +50,11 @@ function playLoop(){
 
 function clearLoop()
 {
-  clearInterval(loop) 
-  clearInterval(loopTimeInt) 
-  recordToLoop = false; 
+  clearInterval(loopPiano) 
+  clearInterval(loopTimeIntPiano) 
+  recordToLoop = false;
   playback = []; 
-  loopTime = 0; 
+  loopTimePiano = 0; 
 }
 
 /*$('.sounds button').click(function()
@@ -142,7 +143,7 @@ var piano = new Tone.Sampler({
           if(recordToLoop){
             playback.push({
               'key':note,
-              'time': loopTime,
+              'time': loopTimePiano,
               'attack': true 
             })
           }
@@ -153,7 +154,7 @@ var piano = new Tone.Sampler({
           if(recordToLoop){
             playback.push({
               'key':note,
-              'time': loopTime,
+              'time': loopTimePiano,
               'attack': false 
             })
         };
@@ -181,13 +182,14 @@ var recordToLoop = false;  //determines
 var loopTime = 0; 
 var loopTimeInt; 
 //Start & Stop loop 
-$('#drums #loop').click(function(){ startLoop() })
+$('#loopDrums').click(function(){ startLoop() })
 //$('#pause-loop').click(function(){ pauseLoop() })
-$('#drums #clear-loop').click(function(){ clearLoop() })
+$('#clear-loopDrums').click(function(){ clearLoop() })
 function incrementLoopTime(){
   loopTimeInt = setInterval(function(){
     loopTime+=10;
-    $('#drums #loopTime').text(loopTime)   
+    console.log(loopTime)
+    $('#loopTimeDrums').text(loopTime)   
   },10) 
 }
 function startLoop(){
@@ -220,7 +222,7 @@ function clearLoop()
   loopTime = 0; 
 }
 
-$('.sounds button').click(function()
+$('#soundsDrums button').click(function()
 {
   console.log(this.name);
   let sound = this.name;  
