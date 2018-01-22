@@ -100,7 +100,7 @@ function pauseLoop(){
 }*/
 
 var piano = new Tone.Sampler({
-            'A0' : 'A0.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
             'C1' : 'C1.[mp3|ogg]',
             'D#1' : 'Ds1.[mp3|ogg]',
             'F#1' : 'Fs1.[mp3|ogg]',
@@ -134,12 +134,36 @@ var piano = new Tone.Sampler({
             'release' : 1,
             'baseUrl' : './audio/salamander/'
         }).toMaster();
-        // GUI //
+
+ /*var piano = new Tone.Sampler({
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+        }, {
+            'release' : 1,
+            'baseUrl' : './audio/guitar/'
+        }).toMaster();
+        // GUI //*/
         var keyboard = Interface.Keyboard();
+
+
 
         keyboard.keyDown = function (note)
         {
-          piano.triggerAttack(note);
+          piano.triggerAttackRelease(note, "8n");
+          console.log(note);
           if(recordToLoop){
             playback.push({
               'key':note,
@@ -147,10 +171,21 @@ var piano = new Tone.Sampler({
               'attack': true 
             })
           }
+          demo.setup(mouseX,mouseY);
         };
+
+        var mouseX, mouseY;
+        $(document).on('mouseover', function(e) {
+          mouseX = e.pageX;
+          mouseY = e.pageY;
+          demo.spawn(mouseX,mouseY);
+          console.log(mouseX);
+        }).mouseover();
+
         keyboard.keyUp = function (note) 
         {
-          piano.triggerRelease(note);
+          console.log('triggerRelease fired')
+          //piano.triggerRelease(note);
           if(recordToLoop){
             playback.push({
               'key':note,

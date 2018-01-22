@@ -46,12 +46,12 @@
             container: document.getElementById( 'container' ),
             retina: 'auto'
         });
-        demo.setup = function() {
+        demo.setup = function(x,y) {
             // Set off some initial particles.
-            var i, x, y;
-            for ( i = 0; i < 20; i++ ) {
-                x = ( demo.width * 0.5 ) + random( -100, 100 );
-                y = ( demo.height * 0.5 ) + random( -100, 100 );
+           // var i, x, y;
+            for (var i = 0; i <50; i++ ) {
+                /*x = ( demo. dth * 0.5 ) + random( -100, 100 );
+                y = ( demo.height * 0.5 ) + random( -100, 100 );*/
                 demo.spawn( x, y );
             }
         };
@@ -61,7 +61,7 @@
             if ( particles.length >= MAX_PARTICLES )
                 pool.push( particles.shift() );
             particle = pool.length ? pool.pop() : new Particle();
-            particle.init( x, y, random( 5, 40 ) );
+            particle.init( x, y, random( 2, 40 ) );
             particle.wander = random( 0.5, 2.0 );
             particle.color = random( COLOURS );
             particle.drag = random( 0.9, 0.99 );
@@ -85,11 +85,12 @@
                 particles[i].draw( demo );
             }
         };
-        demo.mousemove = function() {
+        demo.mousedown = function() {
             var particle, theta, force, touch, max, i, j, n;
             for ( i = 0, n = demo.touches.length; i < n; i++ ) {
                 touch = demo.touches[i], max = random( 1, 4 );
                 for ( j = 0; j < max; j++ ) {
+                    console.log(touch);
                   demo.spawn( touch.x, touch.y );
                 }
             }

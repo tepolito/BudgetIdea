@@ -102,3 +102,9 @@ li{
 	height: 50px;
 	transition: all .5s;
 }
+
+canvas{
+	position: absolute;
+	top: 0;
+	pointer-events: none;
+}
