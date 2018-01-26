@@ -108,3 +108,13 @@ canvas{
 	top: 0;
 	pointer-events: none;
 }
+
+@keyframes increaseFont {
+  0%   { opacity: 1; font-size: 1em;}
+  100% { opacity: 0; font-size: 10em}
+
+}
+
+.notes{
+	animation: increaseFont 1s forwards;
+}

@@ -69,7 +69,9 @@
             force = random( 2, 8 );
             particle.vx = sin( theta ) * force;
             particle.vy = cos( theta ) * force;
+           // particle.shape.image.src = "note.png"
             particles.push( particle );
+            console.log(particle);
         };
         demo.update = function() {
             var i, particle;

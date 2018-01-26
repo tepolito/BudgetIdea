@@ -99,8 +99,28 @@ function pauseLoop(){
   recordToLoop = false; 
 }*/
 
-var piano = new Tone.Sampler({
-            'C6' : 'C6.[mp3|ogg]',
+$('#pianoButton').on('click', function(e)
+{
+   piano = new Tone.Sampler(pianoNotes, {
+            'release' : 1,
+            'baseUrl' : './audio/salamander/'}).toMaster();
+})
+
+$('#synthButton').on('click', function(e)
+{
+   piano = new Tone.Synth(pianoNotes, {
+            'release' : 1,
+            'baseUrl' : './audio/salamander/'}).toMaster();
+})
+
+$('#membraneButton').on('click', function(e)
+{
+   piano = new Tone.MembraneSynth(pianoNotes, {
+            'release' : 1,
+            'baseUrl' : './audio/salamander/'}).toMaster();
+})
+
+let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
             'C1' : 'C1.[mp3|ogg]',
             'D#1' : 'Ds1.[mp3|ogg]',
             'F#1' : 'Fs1.[mp3|ogg]',
@@ -130,10 +150,12 @@ var piano = new Tone.Sampler({
             'F#7' : 'Fs7.[mp3|ogg]',
             'A7' : 'A7.[mp3|ogg]',
             'C8' : 'C8.[mp3|ogg]'
-        }, {
+        }
+
+        var piano = new Tone.Synth(pianoNotes, {
             'release' : 1,
-            'baseUrl' : './audio/salamander/'
-        }).toMaster();
+            'baseUrl' : './audio/salamander/'}).toMaster();
+
 
  /*var piano = new Tone.Sampler({
             'C6' : 'C6.[mp3|ogg]',
@@ -162,7 +184,7 @@ var piano = new Tone.Sampler({
 
         keyboard.keyDown = function (note)
         {
-          piano.triggerAttackRelease(note, "8n");
+          piano.triggerAttack(note);
           console.log(note);
           if(recordToLoop){
             playback.push({
@@ -172,6 +194,7 @@ var piano = new Tone.Sampler({
             })
           }
           demo.setup(mouseX,mouseY);
+          $('body').append(`<div class="notes" style="position:fixed; left:${mouseX}px; top:${mouseY}px;">&#9834;</div>`);
         };
 
         var mouseX, mouseY;
@@ -185,7 +208,7 @@ var piano = new Tone.Sampler({
         keyboard.keyUp = function (note) 
         {
           console.log('triggerRelease fired')
-          //piano.triggerRelease(note);
+          piano.triggerRelease(note);
           if(recordToLoop){
             playback.push({
               'key':note,
