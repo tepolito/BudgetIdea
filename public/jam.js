@@ -5,6 +5,8 @@ var playback = [] //the notes
 var recordToLoop = false;  //determines
 var loopTimePiano = 0; 
 var loopTimeIntPiano; 
+var selectedInstrument;
+//instrumentSwitch(selectedInstrument);
 //Start & Stop loop 
 $('#piano #loopPiano').click(function(){ startLoop() })
 //$('#pause-loop').click(function(){ pauseLoop() })
@@ -99,70 +101,71 @@ function pauseLoop(){
   recordToLoop = false; 
 }*/
 
-var piano = new Tone.Sampler({
-            'C6' : 'C6.[mp3|ogg]',
-            'C1' : 'C1.[mp3|ogg]',
-            'D#1' : 'Ds1.[mp3|ogg]',
-            'F#1' : 'Fs1.[mp3|ogg]',
-            'A1' : 'A1.[mp3|ogg]',
-            'C2' : 'C2.[mp3|ogg]',
-            'D#2' : 'Ds2.[mp3|ogg]',
-            'F#2' : 'Fs2.[mp3|ogg]',
-            'A2' : 'A2.[mp3|ogg]',
-            'C3' : 'C3.[mp3|ogg]',
-            'D#3' : 'Ds3.[mp3|ogg]',
-            'F#3' : 'Fs3.[mp3|ogg]',
-            'A3' : 'A3.[mp3|ogg]',
-            'C4' : 'C4.[mp3|ogg]',
-            'D#4' : 'Ds4.[mp3|ogg]',
-            'F#4' : 'Fs4.[mp3|ogg]',
-            'A4' : 'A4.[mp3|ogg]',
-            'C5' : 'C5.[mp3|ogg]',
-            'D#5' : 'Ds5.[mp3|ogg]',
-            'F#5' : 'Fs5.[mp3|ogg]',
-            'A5' : 'A5.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'D#6' : 'Ds6.[mp3|ogg]',
-            'F#6' : 'Fs6.[mp3|ogg]',
-            'A6' : 'A6.[mp3|ogg]',
-            'C7' : 'C7.[mp3|ogg]',
-            'D#7' : 'Ds7.[mp3|ogg]',
-            'F#7' : 'Fs7.[mp3|ogg]',
-            'A7' : 'A7.[mp3|ogg]',
-            'C8' : 'C8.[mp3|ogg]'
-        }, {
-            'release' : 1,
-            'baseUrl' : './audio/salamander/'
-        }).toMaster();
+$('#pianoInstrumentButton').on('click', function(e)
+{
+  console.log('piano instument selector clicked')
+  selectedInstrument = "piano";
+  instrumentSwitch(selectedInstrument);
+})
 
- /*var piano = new Tone.Sampler({
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-        }, {
-            'release' : 1,
-            'baseUrl' : './audio/guitar/'
-        }).toMaster();
-        // GUI //*/
-        var keyboard = Interface.Keyboard();
+$('#synthInstrumentButton').on('click', function(e)
+{
+  console.log('synth instument selector clicked')
+  selectedInstrument = "synth";
+  instrumentSwitch(selectedInstrument);
+})
+
+
+ 
+       // var keyboard = Interface.Keyboard();
 
 
 
-        keyboard.keyDown = function (note)
+  function instrumentSwitch(selectedInstrument)
+{
+  switch(selectedInstrument)
+{
+  case "piano": var instrument = new Tone.Sampler({
+                              'C6' : 'C6.[mp3|ogg]',
+                              'C1' : 'C1.[mp3|ogg]',
+                              'D#1' : 'Ds1.[mp3|ogg]',
+                              'F#1' : 'Fs1.[mp3|ogg]',
+                              'A1' : 'A1.[mp3|ogg]',
+                              'C2' : 'C2.[mp3|ogg]',
+                              'D#2' : 'Ds2.[mp3|ogg]',
+                              'F#2' : 'Fs2.[mp3|ogg]',
+                              'A2' : 'A2.[mp3|ogg]',
+                              'C3' : 'C3.[mp3|ogg]',
+                              'D#3' : 'Ds3.[mp3|ogg]',
+                              'F#3' : 'Fs3.[mp3|ogg]',
+                              'A3' : 'A3.[mp3|ogg]',
+                              'C4' : 'C4.[mp3|ogg]',
+                              'D#4' : 'Ds4.[mp3|ogg]',
+                              'F#4' : 'Fs4.[mp3|ogg]',
+                              'A4' : 'A4.[mp3|ogg]',
+                              'C5' : 'C5.[mp3|ogg]',
+                              'D#5' : 'Ds5.[mp3|ogg]',
+                              'F#5' : 'Fs5.[mp3|ogg]',
+                              'A5' : 'A5.[mp3|ogg]',
+                              'C6' : 'C6.[mp3|ogg]',
+                              'D#6' : 'Ds6.[mp3|ogg]',
+                              'F#6' : 'Fs6.[mp3|ogg]',
+                              'A6' : 'A6.[mp3|ogg]',
+                              'C7' : 'C7.[mp3|ogg]',
+                              'D#7' : 'Ds7.[mp3|ogg]',
+                              'F#7' : 'Fs7.[mp3|ogg]',
+                              'A7' : 'A7.[mp3|ogg]',
+                              'C8' : 'C8.[mp3|ogg]'
+                          }, {
+                              'release' : 1,
+                              'baseUrl' : './audio/salamander/'
+                          }).toMaster();
+
+                          var keyboard = Interface.Keyboard();
+
+                          keyboard.keyDown = function (note)
         {
-          piano.triggerAttackRelease(note, "8n");
+          instrument.triggerAttack(note);
           console.log(note);
           if(recordToLoop){
             playback.push({
@@ -179,13 +182,13 @@ var piano = new Tone.Sampler({
           mouseX = e.pageX;
           mouseY = e.pageY;
           demo.spawn(mouseX,mouseY);
-          console.log(mouseX);
+          //console.log(mouseX);
         }).mouseover();
 
         keyboard.keyUp = function (note) 
         {
           console.log('triggerRelease fired')
-          //piano.triggerRelease(note);
+          instrument.triggerRelease(note);
           if(recordToLoop){
             playback.push({
               'key':note,
@@ -197,6 +200,95 @@ var piano = new Tone.Sampler({
 
         Interface.Loader();
 
+                          console.log('using piano');
+                          //piano();
+      break;
+
+  case "synth": var instrument = new Tone.Synth({
+                              'C6' : 'C6.[mp3|ogg]',
+                              'C1' : 'C1.[mp3|ogg]',
+                              'D#1' : 'Ds1.[mp3|ogg]',
+                              'F#1' : 'Fs1.[mp3|ogg]',
+                              'A1' : 'A1.[mp3|ogg]',
+                              'C2' : 'C2.[mp3|ogg]',
+                              'D#2' : 'Ds2.[mp3|ogg]',
+                              'F#2' : 'Fs2.[mp3|ogg]',
+                              'A2' : 'A2.[mp3|ogg]',
+                              'C3' : 'C3.[mp3|ogg]',
+                              'D#3' : 'Ds3.[mp3|ogg]',
+                              'F#3' : 'Fs3.[mp3|ogg]',
+                              'A3' : 'A3.[mp3|ogg]',
+                              'C4' : 'C4.[mp3|ogg]',
+                              'D#4' : 'Ds4.[mp3|ogg]',
+                              'F#4' : 'Fs4.[mp3|ogg]',
+                              'A4' : 'A4.[mp3|ogg]',
+                              'C5' : 'C5.[mp3|ogg]',
+                              'D#5' : 'Ds5.[mp3|ogg]',
+                              'F#5' : 'Fs5.[mp3|ogg]',
+                              'A5' : 'A5.[mp3|ogg]',
+                              'C6' : 'C6.[mp3|ogg]',
+                              'D#6' : 'Ds6.[mp3|ogg]',
+                              'F#6' : 'Fs6.[mp3|ogg]',
+                              'A6' : 'A6.[mp3|ogg]',
+                              'C7' : 'C7.[mp3|ogg]',
+                              'D#7' : 'Ds7.[mp3|ogg]',
+                              'F#7' : 'Fs7.[mp3|ogg]',
+                              'A7' : 'A7.[mp3|ogg]',
+                              'C8' : 'C8.[mp3|ogg]'
+                          }, {
+                              'release' : 1,
+                              'baseUrl' : './audio/salamander/'
+                          }).toMaster();
+
+                          var keyboard = Interface.Keyboard();
+
+        keyboard.keyDown = function (note)
+        {
+          //instrument.triggerAttackRelease(note, "8n");
+          console.log(note);
+          if(recordToLoop){
+            playback.push({
+              'key':note,
+              'time': loopTimePiano,
+              'attack': true 
+            })
+          }
+          demo.setup(mouseX,mouseY);
+        };
+
+        var mouseX, mouseY;
+        $(document).on('mouseover', function(e) {
+          mouseX = e.pageX;
+          mouseY = e.pageY;
+          demo.spawn(mouseX,mouseY);
+          //console.log(mouseX);
+        }).mouseover();
+
+        keyboard.keyUp = function (note) 
+        {
+          console.log('triggerRelease fired')
+          //instrument.triggerRelease(note);
+          if(recordToLoop){
+            playback.push({
+              'key':note,
+              'time': loopTimePiano,
+              'attack': false 
+            })
+        };
+      }
+
+        Interface.Loader();
+
+                          console.log('using synth');
+                          //piano();
+                          
+      break;
+      
+  default: alert('select an instrument');
+      break;                            
+}
+}      
+
 
 };
 
@@ -204,6 +296,7 @@ var piano = new Tone.Sampler({
 $(document).ready(function(){
   piano();
   piano2();
+  //instrumentSwitch();
 });
 
 
@@ -273,3 +366,5 @@ $('#soundsDrums button').click(function()
 })
 
 };
+
+
