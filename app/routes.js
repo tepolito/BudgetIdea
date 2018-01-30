@@ -244,6 +244,8 @@ app.post('/saveRecord', isLoggedIn, (req,res) =>
         throw err;    
     })
 
+    console.log('soething else')
+
     let song = new Song(req.body);
 
     song['createdBy'] = req.user._id;

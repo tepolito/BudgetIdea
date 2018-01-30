@@ -1,7 +1,10 @@
+var piano;
+
 function piano()
 {
   var loopPiano; //the interval
 var playback = [] //the notes
+
 var recordToLoop = false;  //determines
 var loopTimePiano = 0; 
 var loopTimeIntPiano; 
@@ -35,11 +38,27 @@ function playLoop(){
       if(sound.attack)  //sdf
       {
         piano.triggerAttack(sound.key);
+        if(isRecording)
+          {
+            recording.push({
+              'key':note,
+              'time': recordingTime,
+              'attack': true 
+            })
+          }
         $('.visualizer').css({'width':sound.time+'px'});
       }
       else
       {
         piano.triggerRelease(sound.key);
+        if(isRecording)
+          {
+            recording.push({
+              'key':note,
+              'time': recordingTime,
+              'attack': false 
+            })
+          }
         $('.visualizer').css({'width':50+'px'});
       }
 
@@ -152,7 +171,7 @@ let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
             'C8' : 'C8.[mp3|ogg]'
         }
 
-        var piano = new Tone.Synth(pianoNotes, {
+         piano = new Tone.Sampler(pianoNotes, {
             'release' : 1,
             'baseUrl' : './audio/salamander/'}).toMaster();
 
@@ -193,6 +212,15 @@ let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
               'attack': true 
             })
           }
+
+          if(isRecording)
+          {
+            recording.push({
+              'key':note,
+              'time': recordingTime,
+              'attack': true 
+            })
+          }
           demo.setup(mouseX,mouseY);
           $('body').append(`<div class="notes" style="position:fixed; left:${mouseX}px; top:${mouseY}px;">&#9834;</div>`);
         };
@@ -214,8 +242,18 @@ let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
               'key':note,
               'time': loopTimePiano,
               'attack': false 
-            })
+            }) 
+
         };
+
+        if(isRecording)
+          {
+            recording.push({
+              'key':note,
+              'time': recordingTime,
+              'attack': false 
+            })
+          } 
       }
 
         Interface.Loader();
@@ -296,3 +334,119 @@ $('#soundsDrums button').click(function()
 })
 
 };
+
+
+// PLAY PAUSE RECORD SAVE
+
+var recording = [];
+var recordingTime = 0;
+
+var isRecording = false;
+var recordingInterval;
+var inc = 50;
+
+document.getElementById('start').addEventListener("click", startRecord);
+
+document.getElementById('pause').addEventListener("click", pauseRecord);
+
+document.getElementById('clear').addEventListener("click", clearRecord);
+
+document.getElementById('saveRecord').addEventListener("click", saveRecord);
+
+document.getElementById('play').addEventListener('click', playRecord);
+
+function startRecord()
+{
+  isRecording = true;
+
+  recordingInterval = setInterval(recordingIncrement, inc)
+}
+
+function recordingIncrement()
+{
+  recordingTime += inc;
+
+  document.getElementById('clock').innerHTML = recordingTime;
+}
+
+function pauseRecord()
+{
+  clearInterval(recordingInterval);
+  isRecording = false;
+}
+
+function clearRecord()
+{
+  recording = [];
+  isRecording = false;
+  clearInterval(recordingInterval);
+  recordingTime = 0;
+  document.getElementById('clock').innerHTML = recordingTime;
+}
+
+function saveRecord()
+{
+  console.log(recording);
+  pauseRecord();
+
+  var songname = prompt("Please enter a song name", "MySong");
+
+  if(!songname)
+  {
+    return;
+  }
+  $.ajax(
+            {
+              type: 'POST',
+              data: JSON.stringify({songname: songname, song: recording}),
+              contentType: 'application/json',
+              url: '/saveRecord',             
+              success: function(data) 
+              {
+                console.log('success');
+                console.log(JSON.stringify(data));
+              }
+            });
+}
+
+function playRecord()
+{
+  pauseRecord();
+
+  recording.forEach(function(note)
+  {
+    if(note.attack)
+    {
+      setTimeout(function()
+      {
+        piano.triggerAttack(note.key)
+      }, note.time);
+    }
+    else
+    {
+      setTimeout(function()
+      {
+        piano.triggerRelease(note.key)
+      }, note.time);
+    }
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

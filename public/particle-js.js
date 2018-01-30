@@ -71,7 +71,7 @@
             particle.vy = cos( theta ) * force;
            // particle.shape.image.src = "note.png"
             particles.push( particle );
-            console.log(particle);
+            //console.log(particle);
         };
         demo.update = function() {
             var i, particle;

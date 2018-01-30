@@ -38,9 +38,31 @@ $(function()
         // GUI //
         var keyboard = Interface.Keyboard();
 
-        var record_array = [];
+        var recording = [];
 
-        function playRecord(record_array)
+        function playRecord(recording)
+        {
+
+          recording.forEach(function(note)
+          {
+            if(note.attack)
+            {
+              setTimeout(function()
+              {
+                piano.triggerAttack(note.key)
+              }, note.time);
+            }
+            else
+            {
+              setTimeout(function()
+              {
+                piano.triggerRelease(note.key)
+              }, note.time);
+            }
+          })
+        }
+
+        /*function playRecord(record_array)
         {
              console.log(record_array);
              if(record_array.length > 0)
@@ -59,7 +81,7 @@ $(function()
             }
         }
 
-        playRecord(record_array);
+        playRecord(record_array);*/
 
         $('.songBox').on('click', '.playButton', function (e)
         {
@@ -69,11 +91,11 @@ $(function()
 
           newSong = JSON.parse($(this).siblings('.span-song').text());
 
-          var wavesurfer = WaveSurfer.create({container: '.wave', waveColor: 'darkorange'});
+         /* var wavesurfer = WaveSurfer.create({container: '.wave', waveColor: 'darkorange'});
 
           wavesurfer.load('./audio/salamander/A0.mp3');
 
-          wavesurfer.play();
+          wavesurfer.play();*/
 
           record_array = [];
           record_array = newSong;
