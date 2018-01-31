@@ -1,4 +1,5 @@
 var piano;
+var instrument;
 
 function piano()
 {
@@ -120,23 +121,35 @@ function pauseLoop(){
 
 $('#pianoButton').on('click', function(e)
 {
-   piano = new Tone.Sampler(pianoNotes, {
+  instrument = 'piano';
+
+  switchInstruments();
+
+   /*piano = new Tone.Sampler(pianoNotes, {
             'release' : 1,
-            'baseUrl' : './audio/salamander/'}).toMaster();
+            'baseUrl' : './audio/salamander/'}).toMaster();*/
 })
 
 $('#synthButton').on('click', function(e)
 {
-   piano = new Tone.Synth(pianoNotes, {
+  instrument = 'synth';
+
+  switchInstruments();
+
+   /*piano = new Tone.Synth(pianoNotes, {
             'release' : 1,
-            'baseUrl' : './audio/salamander/'}).toMaster();
+            'baseUrl' : './audio/salamander/'}).toMaster()*/;
 })
 
 $('#membraneButton').on('click', function(e)
 {
-   piano = new Tone.MembraneSynth(pianoNotes, {
+  instrument = 'memSynth';
+
+  switchInstruments();
+
+   /*piano = new Tone.MembraneSynth(pianoNotes, {
             'release' : 1,
-            'baseUrl' : './audio/salamander/'}).toMaster();
+            'baseUrl' : './audio/salamander/'}).toMaster();*/
 })
 
 let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
@@ -171,32 +184,30 @@ let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
             'C8' : 'C8.[mp3|ogg]'
         }
 
+  function switchInstruments()
+  {
+    switch(instrument)
+         {
+          case 'piano': piano = new Tone.Sampler(pianoNotes, {
+                        'release' : 1,
+                        'baseUrl' : './audio/salamander/'}).toMaster();
+            break;
+
+          case 'synth': piano = new Tone.Synth(pianoNotes, {
+                        'release' : 1,
+                        'baseUrl' : './audio/salamander/'}).toMaster();
+            break;
+            
+          case 'memSynth': piano = new Tone.MembraneSynth(pianoNotes, {
+                        'release' : 1,
+                        'baseUrl' : './audio/salamander/'}).toMaster();
+            break;    
+         }
+  }      
          piano = new Tone.Sampler(pianoNotes, {
             'release' : 1,
             'baseUrl' : './audio/salamander/'}).toMaster();
 
-
- /*var piano = new Tone.Sampler({
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-        }, {
-            'release' : 1,
-            'baseUrl' : './audio/guitar/'
-        }).toMaster();
-        // GUI //*/
         var keyboard = Interface.Keyboard();
 
 
