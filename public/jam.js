@@ -1,8 +1,55 @@
 var piano;
-var instrument;
+var instrument = 'piano';
 
-function piano()
-{
+let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
+            'C1' : 'C1.[mp3|ogg]',
+            'D#1' : 'Ds1.[mp3|ogg]',
+            'F#1' : 'Fs1.[mp3|ogg]',
+            'A1' : 'A1.[mp3|ogg]',
+            'C2' : 'C2.[mp3|ogg]',
+            'D#2' : 'Ds2.[mp3|ogg]',
+            'F#2' : 'Fs2.[mp3|ogg]',
+            'A2' : 'A2.[mp3|ogg]',
+            'C3' : 'C3.[mp3|ogg]',
+            'D#3' : 'Ds3.[mp3|ogg]',
+            'F#3' : 'Fs3.[mp3|ogg]',
+            'A3' : 'A3.[mp3|ogg]',
+            'C4' : 'C4.[mp3|ogg]',
+            'D#4' : 'Ds4.[mp3|ogg]',
+            'F#4' : 'Fs4.[mp3|ogg]',
+            'A4' : 'A4.[mp3|ogg]',
+            'C5' : 'C5.[mp3|ogg]',
+            'D#5' : 'Ds5.[mp3|ogg]',
+            'F#5' : 'Fs5.[mp3|ogg]',
+            'A5' : 'A5.[mp3|ogg]',
+            'C6' : 'C6.[mp3|ogg]',
+            'D#6' : 'Ds6.[mp3|ogg]',
+            'F#6' : 'Fs6.[mp3|ogg]',
+            'A6' : 'A6.[mp3|ogg]',
+            'C7' : 'C7.[mp3|ogg]',
+            'D#7' : 'Ds7.[mp3|ogg]',
+            'F#7' : 'Fs7.[mp3|ogg]',
+            'A7' : 'A7.[mp3|ogg]',
+            'C8' : 'C8.[mp3|ogg]',
+        }
+
+piano = new Tone.Sampler(pianoNotes, {
+            'release' : 1,
+            'baseUrl' : './audio/salamander/',
+            'onload': function()
+             { 
+              console.log('loaded')
+            } 
+  }).toMaster();
+
+
+
+        var keyboard = Interface.Keyboard();
+
+Interface.Loader();
+
+
+
   var loopPiano; //the interval
 var playback = [] //the notes
 
@@ -33,31 +80,65 @@ function startLoop(){
 function playLoop(){
   playback.forEach(function(sound){
     setTimeout(function(s){
-      console.log(sound);
+     // console.log(sound);
       //new Audio(`./drumkit/${sound.key}.ogg`).play()
       
       if(sound.attack)  //sdf
       {
-        piano.triggerAttack(sound.key);
+        instrument = sound.instrument
+        switchInstruments()
+        switch(sound.instrument)
+        {
+          case 'piano': 
+                        piano.triggerAttack(sound.key)
+                   break;
+                   
+          case 'synth': 
+                        piano.triggerAttackRelease(sound.key, '8n');
+                   break;
+                   
+          case 'memSynth':
+                           piano.triggerAttackRelease(sound.key, '8n');
+                   break;                             
+        }
+        
         if(isRecording)
           {
             recording.push({
               'key':note,
               'time': recordingTime,
-              'attack': true 
+              'attack': true,
+              'instrument': instrument 
             })
           }
         $('.visualizer').css({'width':sound.time+'px'});
       }
       else
       {
-        piano.triggerRelease(sound.key);
+        instrument = sound.instrument
+        switchInstruments()
+        switch(sound.instrument)
+        {
+          case 'piano': 
+                        piano.triggerRelease(sound.key)
+                   break;
+                   
+          case 'synth': 
+                        piano.triggerAttackRelease(sound.key, '8n');
+                   break;
+                   
+          case 'memSynth': 
+                           piano.triggerAttackRelease(sound.key, '8n');
+                   break;                             
+        }
+        
         if(isRecording)
           {
             recording.push({
               'key':note,
               'time': recordingTime,
-              'attack': false 
+              'attack': false,
+              'instrument': instrument 
             })
           }
         $('.visualizer').css({'width':50+'px'});
@@ -152,37 +233,7 @@ $('#membraneButton').on('click', function(e)
             'baseUrl' : './audio/salamander/'}).toMaster();*/
 })
 
-let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
-            'C1' : 'C1.[mp3|ogg]',
-            'D#1' : 'Ds1.[mp3|ogg]',
-            'F#1' : 'Fs1.[mp3|ogg]',
-            'A1' : 'A1.[mp3|ogg]',
-            'C2' : 'C2.[mp3|ogg]',
-            'D#2' : 'Ds2.[mp3|ogg]',
-            'F#2' : 'Fs2.[mp3|ogg]',
-            'A2' : 'A2.[mp3|ogg]',
-            'C3' : 'C3.[mp3|ogg]',
-            'D#3' : 'Ds3.[mp3|ogg]',
-            'F#3' : 'Fs3.[mp3|ogg]',
-            'A3' : 'A3.[mp3|ogg]',
-            'C4' : 'C4.[mp3|ogg]',
-            'D#4' : 'Ds4.[mp3|ogg]',
-            'F#4' : 'Fs4.[mp3|ogg]',
-            'A4' : 'A4.[mp3|ogg]',
-            'C5' : 'C5.[mp3|ogg]',
-            'D#5' : 'Ds5.[mp3|ogg]',
-            'F#5' : 'Fs5.[mp3|ogg]',
-            'A5' : 'A5.[mp3|ogg]',
-            'C6' : 'C6.[mp3|ogg]',
-            'D#6' : 'Ds6.[mp3|ogg]',
-            'F#6' : 'Fs6.[mp3|ogg]',
-            'A6' : 'A6.[mp3|ogg]',
-            'C7' : 'C7.[mp3|ogg]',
-            'D#7' : 'Ds7.[mp3|ogg]',
-            'F#7' : 'Fs7.[mp3|ogg]',
-            'A7' : 'A7.[mp3|ogg]',
-            'C8' : 'C8.[mp3|ogg]'
-        }
+
 
   function switchInstruments()
   {
@@ -204,23 +255,30 @@ let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
             break;    
          }
   }      
-         piano = new Tone.Sampler(pianoNotes, {
-            'release' : 1,
-            'baseUrl' : './audio/salamander/'}).toMaster();
 
-        var keyboard = Interface.Keyboard();
+         
 
-
+        console.log(piano);
 
         keyboard.keyDown = function (note)
         {
-          piano.triggerAttack(note);
+          console.log('keydown instrument is : ' + instrument);
+          if(instrument == "synth" || instrument == "memSynth")
+          {
+            piano.triggerAttackRelease(note, "8n");
+          }
+          else
+          {
+            piano.triggerAttack(note);
+          }
+          
           console.log(note);
           if(recordToLoop){
             playback.push({
               'key':note,
               'time': loopTimePiano,
-              'attack': true 
+              'attack': true,
+              'instrument': instrument 
             })
           }
 
@@ -229,30 +287,41 @@ let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
             recording.push({
               'key':note,
               'time': recordingTime,
-              'attack': true 
+              'attack': true,
+              'instrument': instrument 
             })
           }
           demo.setup(mouseX,mouseY);
           $('body').append(`<div class="notes" style="position:fixed; left:${mouseX}px; top:${mouseY}px;">&#9834;</div>`);
         };
 
-        var mouseX, mouseY;
+        /*var mouseX, mouseY;
         $(document).on('mouseover', function(e) {
           mouseX = e.pageX;
           mouseY = e.pageY;
           demo.spawn(mouseX,mouseY);
           console.log(mouseX);
-        }).mouseover();
+        }).mouseover();*/
 
         keyboard.keyUp = function (note) 
         {
-          console.log('triggerRelease fired')
-          piano.triggerRelease(note);
+          console.log('keyup instrument is : ' + instrument);
+          if(instrument == "synth" || instrument == "memSynth")
+          {
+            return;
+          }
+          else
+          {
+            piano.triggerRelease(note);
+          }
+          
+          
           if(recordToLoop){
             playback.push({
               'key':note,
               'time': loopTimePiano,
-              'attack': false 
+              'attack': false,
+              'instrument': instrument 
             }) 
 
         };
@@ -262,26 +331,27 @@ let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
             recording.push({
               'key':note,
               'time': recordingTime,
-              'attack': false 
+              'attack': false,
+              'instrument': instrument 
             })
           } 
       }
 
-        Interface.Loader();
+        
 
 
-};
 
 
-$(document).ready(function(){
+
+/*$(document).ready(function(){
   piano();
   piano2();
-});
+});*/
 
 
 
 
-function piano2()
+/*function piano2()
 {
   var loop; //the interval
 var playback = [] //the notes
@@ -344,7 +414,7 @@ $('#soundsDrums button').click(function()
   
 })
 
-};
+};*/
 
 
 // PLAY PAUSE RECORD SAVE
@@ -424,20 +494,63 @@ function playRecord()
 {
   pauseRecord();
 
+  /*piano = new Tone.Sampler(pianoNotes, {
+            'release' : 1,
+            'baseUrl' : './audio/salamander/'}).toMaster();
+
+  var keyboard = Interface.Keyboard();
+
+  Interface.Loader();*/
+
+
+  console.log(instrument, piano);
+  switchInstruments();
   recording.forEach(function(note)
   {
     if(note.attack)
     {
       setTimeout(function()
       {
-        piano.triggerAttack(note.key)
+        instrument = note.instrument
+        switchInstruments()
+        switch(note.instrument)
+        {
+          case 'piano': 
+                        piano.triggerAttack(note.key)
+                   break;
+                   
+          case 'synth': 
+                        piano.triggerAttackRelease(note.key, '8n');
+                   break;
+                   
+          case 'memSynth':
+                           piano.triggerAttackRelease(note.key, '8n');
+                   break;                             
+        }
+        //piano.triggerAttack(note.key)
       }, note.time);
     }
     else
     {
       setTimeout(function()
       {
-        piano.triggerRelease(note.key)
+        instrument = note.instrument
+        switchInstruments()
+        switch(note.instrument)
+        {
+          case 'piano': 
+                        piano.triggerRelease(note.key)
+                   break;
+                   
+          case 'synth': 
+                        piano.triggerAttackRelease(note.key, '8n');
+                   break;
+                   
+          case 'memSynth': 
+                           piano.triggerAttackRelease(note.key, '8n');
+                   break;                             
+        }
+        //piano.triggerRelease(note.key)
       }, note.time);
     }
   })
