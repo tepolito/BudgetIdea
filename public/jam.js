@@ -239,9 +239,17 @@ $('#membraneButton').on('click', function(e)
   {
     switch(instrument)
          {
-          case 'piano': piano = new Tone.Sampler(pianoNotes, {
+          case 'piano': return new Promise((resolve, reject) => { 
+                        piano = new Tone.Sampler(pianoNotes, {
                         'release' : 1,
-                        'baseUrl' : './audio/salamander/'}).toMaster();
+                        'baseUrl' : './audio/salamander/',
+                        'onload'  : function()
+                        {
+                          console.log('hi');
+                            resolve('success');
+
+                        }}).toMaster();
+                      })
             break;
 
           case 'synth': piano = new Tone.Synth(pianoNotes, {
@@ -512,7 +520,10 @@ function playRecord()
       setTimeout(function()
       {
         instrument = note.instrument
-        switchInstruments()
+       let myFirstPromise =  switchInstruments()
+        myFirstPromise.then((successMessage) => {
+        console.log("Yay! " + successMessage);
+        
         switch(note.instrument)
         {
           case 'piano': 
@@ -527,7 +538,7 @@ function playRecord()
                            piano.triggerAttackRelease(note.key, '8n');
                    break;                             
         }
-        //piano.triggerAttack(note.key)
+       }); //piano.triggerAttack(note.key)
       }, note.time);
     }
     else
@@ -535,7 +546,10 @@ function playRecord()
       setTimeout(function()
       {
         instrument = note.instrument
-        switchInstruments()
+       // switchInstruments()
+        let mySecondPromise =  switchInstruments()
+        mySecondPromise.then((successMessage) => {
+        console.log("Yay! " + successMessage);
         switch(note.instrument)
         {
           case 'piano': 
@@ -550,7 +564,7 @@ function playRecord()
                            piano.triggerAttackRelease(note.key, '8n');
                    break;                             
         }
-        //piano.triggerRelease(note.key)
+       }); //piano.triggerRelease(note.key)
       }, note.time);
     }
   })
