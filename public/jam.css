@@ -43,3 +43,10 @@ h1{
   	color: red;
   }
 }
+
+@media screen and (orientation:landscape)
+{
+	body{
+		padding-top: 40px;
+	}
+}
