@@ -1,7 +1,7 @@
 $(function()
 {
-	var piano = new Tone.Sampler({
-            'A0' : 'A0.[mp3|ogg]',
+  let instrument;
+  let pianoNotes = {'C6' : 'C6.[mp3|ogg]',
             'C1' : 'C1.[mp3|ogg]',
             'D#1' : 'Ds1.[mp3|ogg]',
             'F#1' : 'Fs1.[mp3|ogg]',
@@ -30,8 +30,20 @@ $(function()
             'D#7' : 'Ds7.[mp3|ogg]',
             'F#7' : 'Fs7.[mp3|ogg]',
             'A7' : 'A7.[mp3|ogg]',
-            'C8' : 'C8.[mp3|ogg]'
-        }, {
+            'C8' : 'C8.[mp3|ogg]',
+        }
+
+	var piano = new Tone.Sampler(pianoNotes, {
+            'release' : 1,
+            'baseUrl' : './audio/salamander/'
+        }).toMaster();
+
+  var synth = new Tone.Synth(pianoNotes, {
+            'release' : 1,
+            'baseUrl' : './audio/salamander/'
+        }).toMaster();
+
+  var memSynth = new Tone.MembraneSynth(pianoNotes, {
             'release' : 1,
             'baseUrl' : './audio/salamander/'
         }).toMaster();
@@ -47,16 +59,47 @@ $(function()
           {
             if(note.attack)
             {
+
               setTimeout(function()
               {
-                piano.triggerAttack(note.key)
+                instrument = note.instrument
+
+                switch(note.instrument)
+                {
+                  case 'piano': 
+                  piano.triggerAttack(note.key);
+                  break;
+
+                  case 'synth': 
+                  synth.triggerAttackRelease(note.key, '8n');
+                  break;
+
+                  case 'memSynth':
+                  memSynth.triggerAttackRelease(note.key, '8n');
+                  break;                             
+                }
               }, note.time);
             }
             else
             {
               setTimeout(function()
               {
-                piano.triggerRelease(note.key)
+                instrument = note.instrument
+                
+                switch(note.instrument)
+                {
+                  case 'piano': 
+                  piano.triggerRelease(note.key)
+                  break;
+
+                  case 'synth': 
+                  synth.triggerAttackRelease(note.key, '8n');
+                  break;
+
+                  case 'memSynth': 
+                  memSynth.triggerAttackRelease(note.key, '8n');
+                  break;                             
+                }
               }, note.time);
             }
           })
