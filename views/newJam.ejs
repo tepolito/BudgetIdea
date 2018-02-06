@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="test.css">
+    <link rel="stylesheet" type="text/css" href="jam.css">
     <style>
         body         { padding-top:80px; }
     </style>
@@ -26,27 +27,32 @@
 
     <h1>&#9835;Solo Jam</h1>
     
-    <div>
-        <button id="pianoButton">Piano</button>
-        <button id="synthButton">Synth</button>
-        <button id="membraneButton">MembraneSynth</button>
-
+    <div id="instrumentButtons">
+        <button id="pianoButton" class="btn btn-info btn-sm">Piano</button>
+        <button id="synthButton" class="btn btn-info btn-sm">Synth</button>
+        <button id="membraneButton" class="btn btn-info btn-sm">MembraneSynth</button>
     </div>
 
    <div id="piano"> 
         <div id="Content">
            <div id="Keyboard"></div>
        </div>
-   
-       <button id="loopPiano">Loop</button>
-       <!--<button id="pause-loop">Pause Loop</button>-->
-       <button id="clear-loopPiano">Clear Loop</button>
+        
+        <div class="loopButtons">
+            <button id="loopPiano" class="btn btn-info btn-sm">Loop</button>
+            <!--<button id="pause-loop">Pause Loop</button>-->
+            <button id="clear-loopPiano" class="btn btn-info btn-sm">Clear Loop</button>
+        </div>
+       
     <br>
-       <button id="start">start recording</button>
-       <button id="pause">pause recording</button>
-       <button id="clear">clear recording</button>
-       <button id="play">play recording</button>
-       <button id="saveRecord">save the song</button>
+        <div class="recordingButtons">
+            <button id="start" class="btn btn-info btn-sm">start recording</button>
+            <button id="pause" class="btn btn-info btn-sm">pause recording</button>
+            <button id="clear" class="btn btn-info btn-sm">clear recording</button>
+            <button id="play" class="btn btn-info btn-sm">play recording</button>
+            <button id="saveRecord" class="btn btn-info btn-sm">save the song</button>
+        </div>
+       
 
        <div id="clock"></div>
        
