@@ -55,9 +55,9 @@ memSynth = new Tone.MembraneSynth(pianoNotes, {
 
 
 
-        var keyboard = Interface.Keyboard();
+      //  var keyboard = Interface.Keyboard();
 
-Interface.Loader();
+//Interface.Loader();
 
 
 
@@ -281,8 +281,10 @@ $('#membraneButton').on('click', function(e)
 
         console.log(piano);
 
-        keyboard.keyDown = function (note)
+       // keyboard.keyDown = function (note)
+       $('.noteButton').on('mousedown', function (e)
         {
+          let note = $(this).text();
           console.log('keydown instrument is : ' + instrument);
           if(instrument == "synth")
           {
@@ -318,7 +320,7 @@ $('#membraneButton').on('click', function(e)
           }
           demo.setup(mouseX,mouseY);
           $('body').append(`<div class="notes" style="position:fixed; left:${mouseX}px; top:${mouseY}px;">&#9834;</div>`);
-        };
+        });
 
         /*var mouseX, mouseY;
         $(document).on('mouseover', function(e) {
@@ -328,8 +330,10 @@ $('#membraneButton').on('click', function(e)
           console.log(mouseX);
         }).mouseover();*/
 
-        keyboard.keyUp = function (note) 
+       // keyboard.keyUp = function (note)
+       $('.noteButton').on('mouseup', function (e) 
         {
+          let note = $(this).text();
           console.log('keyup instrument is : ' + instrument);
           if(instrument == "synth" || instrument == "memSynth")
           {
@@ -360,7 +364,7 @@ $('#membraneButton').on('click', function(e)
               'instrument': instrument 
             })
           } 
-      }
+      })
 
         
 

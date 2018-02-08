@@ -6,11 +6,10 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="test.css">
     <link rel="stylesheet" type="text/css" href="jam.css">
-    <style>
-        body         { padding-top:80px; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 </head>
-<body id="container">
+<body>
 
 <style type="text/css">
         img {
@@ -26,28 +25,61 @@
     </style>
 
     <h1>&#9835;Solo Jam</h1>
-
-    <h1 id="warning">PUT YOUR DEVICE IN LANDSCAPE DUMBASS</h1>
     
-    <div id="instrumentButtons">
-        <button id="pianoButton" class="btn btn-info btn-sm">Piano</button>
-        <button id="synthButton" class="btn btn-info btn-sm">Synth</button>
-        <button id="membraneButton" class="btn btn-info btn-sm">MembraneSynth</button>
-    </div>
+    
 
    <div id="piano"> 
-    <a href="/farts" class="btn btn-info btn-sm">fars</a> 
-        <div id="Content">
+
+        <!-- <div id="Content">
            <div id="Keyboard"></div>
+       </div> -->
+
+       <div id="keys">
+           <div id="c1" class = "noteButton">C1</div>
+            <div id="d#1" class = "noteButton">D#1</div>
+            <div id="f#1" class = "noteButton">F#1</div>
+            <div id="A1" class = "noteButton">A1</div>
+            <div id="c2" class = "noteButton">C2</div>
+            <div id="d#2" class = "noteButton">D#2</div>
+            <div id="f#2" class = "noteButton">F#2</div>
+            <div id="A2" class = "noteButton">A2</div>
+            <div id="c3" class = "noteButton">C3</div>
+            <div id="d#3" class = "noteButton">D#3</div>
+
+            <div id="f#3" class = "noteButton">F#3</div>
+            <div id="A3" class = "noteButton">A3</div>
+            <div id="c4" class = "noteButton">C4</div>
+            <div id="c1" class = "noteButton">D#4</div>
+            <div id="c1" class = "noteButton">F#4</div>
+            <div id="c1" class = "noteButton">A4</div>
+            <div id="c1" class = "noteButton">C5</div>
+            <div id="c1" class = "noteButton">D#5</div>
+            <div id="c1" class = "noteButton">F#5</div>
+            <div id="c1" class = "noteButton">A5</div>
+            <div id="c1" class = "noteButton">C6</div>
+            <div id="c1" class = "noteButton">D#6</div>
+            <div id="c1" class = "noteButton">F#6</div>
+            <div id="c1" class = "noteButton">A6</div>
+            <div id="c1" class = "noteButton">C7</div>
+            <div id="c1" class = "noteButton">D#7</div>
+            <div id="c1" class = "noteButton">F#7</div>
+            <div id="c1" class = "noteButton">A7</div>
+            <div id="c1" class = "noteButton">C8</div>
+            <div id="c1" class = "noteButton">C8</div>
        </div>
         
+       <div id="instrumentButtons">
+            <button id="pianoButton" class="btn btn-warning btn-sm">Piano</button>
+            <button id="synthButton" class="btn btn-info btn-sm">Synth</button>
+            <button id="membraneButton" class="btn btn-info btn-sm">MembraneSynth</button>
+        </div>
+
         <div class="loopButtons">
             <button id="loopPiano" class="btn btn-info btn-sm">Loop</button>
             <!--<button id="pause-loop">Pause Loop</button>-->
             <button id="clear-loopPiano" class="btn btn-info btn-sm">Clear Loop</button>
         </div>
-       
-    <br>
+    
         <div class="recordingButtons">
             <button id="start" class="btn btn-info btn-sm">start recording</button>
             <button id="pause" class="btn btn-info btn-sm">pause recording</button>
@@ -55,6 +87,8 @@
             <button id="play" class="btn btn-info btn-sm">play recording</button>
             <button id="saveRecord" class="btn btn-info btn-sm">save the song</button>
         </div>
+
+    
        
 
        <div id="clock"></div>
@@ -94,7 +128,7 @@
 
 
 
-    <div class="visualizer"></div>
+    <!-- <div class="visualizer"></div> -->
 
    <!--  <div id="container"></div> -->
 
@@ -134,7 +168,7 @@
     <script src="./scripts/Keyboard.js"></script>
     <script src="./scripts/draggabilly.js"></script>
     <script src="./scripts/StartAudioContext.js"></script>
-    <script src="./scripts/Interface.js"></script>
+    <!-- <script src="./scripts/Interface.js"></script> -->
     <script src="jam.js"></script>
     <script src="particle-js.js"></script>
     <script>
