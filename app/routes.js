@@ -232,7 +232,7 @@ app.get('/newJam', (req,res) =>
 {
     User.find().exec().then(users =>  
     {
-        res.render('newJam', {users:users, profile:req.user});   
+        res.render('newJam.ejs', {users:users, profile:req.user});   
     })
 })
 
@@ -259,14 +259,19 @@ app.get("/allSongs", (req,res)=>
     Song.find().exec().then(songs =>  
     {
         console.log(songs);
-        res.render('allSongs', {songs:songs});   
+        res.render('allSongs.ejs', {songs:songs});   
     })
 })
 
 app.get("/rooms", isLoggedIn, (req,res)=>
 {
     res.render('rooms')
-})  
+}) 
+
+app.get("/test", (req,res) =>
+{
+    res.render('test.ejs'); 
+}) 
 
 };
 
