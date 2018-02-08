@@ -48,7 +48,7 @@ $(function()
             'baseUrl' : './audio/salamander/'
         }).toMaster();
         // GUI //
-        var keyboard = Interface.Keyboard();
+        //var keyboard = Interface.Keyboard();
 
         var recording = [];
 
@@ -85,7 +85,7 @@ $(function()
               setTimeout(function()
               {
                 instrument = note.instrument
-                
+
                 switch(note.instrument)
                 {
                   case 'piano': 
