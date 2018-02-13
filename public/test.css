@@ -174,4 +174,14 @@ canvas{
 	.containerProfile .well{
 		width: 80%;
 	}
+
+	.profileInfo{
+		padding-bottom: 20px;
+	}
+
+	#piano .btn{
+		font-size: 14px;
+	}
+
+
 }

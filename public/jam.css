@@ -51,3 +51,22 @@ body{
   display: inline;
   margin-right: 2vw;
 }
+
+#instrumentButtons .btn{
+  background-color: #4CAF50;
+}
+
+.loopButtons .btn{
+  background-color: #FFEB3B;
+}
+
+.recordingButtons .btn{
+  background-color: #e63528;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+  #instrumentButtons, .loopButtons, .recordingButtons{
+    display: block;
+    width: 100%;
+  }
+}
