@@ -118,3 +118,15 @@ canvas{
 .notes{
 	animation: increaseFont 1s forwards;
 }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+	#indexContainer{
+		margin-top: 50%;
+	}
+
+	.jumbotron{
+		width: 98%;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
