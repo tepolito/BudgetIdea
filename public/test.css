@@ -125,8 +125,14 @@ canvas{
 	}
 
 	.jumbotron{
-		width: 98%;
-		margin-right: auto;
-		margin-left: auto;
+		font-size: 50px;
+	}
+
+	.jumbotron h1{
+		font-size: 100px;
+	}
+
+	.btn{
+		font-size: 40px;
 	}
 }
