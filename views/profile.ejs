@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div class="containerProfile">
 
     <div class="page-header text-center">
         <h1><span class="fa music-note"></span> My Profile</h1>
@@ -18,15 +18,14 @@
             <a href="/logout" target="_self" class="btn btn-info btn-sm">Logout</a>
             <a href="/newJam" target="_self" class="btn btn-info btn-sm">Solo Jam</a>
             <!-- <a href="/rooms" class="btn btn-info btn-sm">Rooms</a> -->
-            <a href="/allSongs" class="btn btn-info btn-sm">All Songs</a>
-            <a href="/farts" class="btn btn-info btn-sm">fars</a> 
+            <a href="/allSongs" class="btn btn-info btn-sm">All Songs</a> 
         </nav>
     </div>
 
     <div>
-        <h1>Profile Page</h1>
-        <h2 id="name">User Name: </h2>
-        <h2 contenteditable="true" id="userName"> <%= user.name %></h2>
+        <h2>Profile Page</h2>
+        <h3 id="name">User Name: </h3>
+        <h3 contenteditable="true" id="userName"> <%= user.name %></h3>
         <button id="save" class="btn btn-info btn-sm">Save</button>        
     </div>
 
