@@ -120,8 +120,9 @@ canvas{
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px){
-	#indexContainer{
+	.container{
 		margin-top: 50%;
+		width: 100%;
 	}
 
 	.jumbotron{
@@ -134,5 +135,17 @@ canvas{
 
 	.btn{
 		font-size: 40px;
+	}
+
+	.login h1{
+		font-size: 100px;
+	}
+
+	.login form{
+		font-size: 40px;
+	}
+
+	.login p{
+		font-size: 24px;
 	}
 }
