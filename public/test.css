@@ -171,6 +171,10 @@ canvas{
 		font-size: 50px;
 	}
 
+	h4{
+		font-size: 25px;
+	}
+
 	.containerProfile .well{
 		width: 80%;
 	}
@@ -179,7 +183,7 @@ canvas{
 		padding-bottom: 20px;
 	}
 
-	#piano .btn{
+	.jamNav .btn, #piano .btn{
 		font-size: 14px;
 	}
 
@@ -187,8 +191,25 @@ canvas{
 		font-size: 100px;
 	}
 
+	.jamHeader{
+		font-size: 36px;
+		display: inline;
+	}
+
 	#songs{
 		font-size: 50px;
+	}
+
+	.jamNav{
+		display: inline;
+	}
+
+	.prof{
+		display: inline-block;
+	}
+
+	.navBtn{
+		margin-bottom: 10px;
 	}
 
 }
