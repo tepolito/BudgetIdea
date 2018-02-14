@@ -120,7 +120,7 @@ canvas{
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px){
-	.containerLogin .containerIndex{
+	.containerLogin, .containerIndex{
 		margin-top: 40%;
 		width: 100%;
 	}
