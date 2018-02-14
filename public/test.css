@@ -163,11 +163,11 @@ canvas{
 		font-size: 100px;
 	}
 
-	.containerProfile h2{
+	h2{
 		font-size: 75px;
 	}
 
-	.containerProfile h3{
+	h3{
 		font-size: 50px;
 	}
 
@@ -183,5 +183,12 @@ canvas{
 		font-size: 14px;
 	}
 
+	h1{
+		font-size: 100px;
+	}
+
+	#songs{
+		font-size: 50px;
+	}
 
 }

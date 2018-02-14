@@ -23,8 +23,8 @@ module.exports = function(app, passport) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        console.log('something silly');
-        console.log(req.user);
+        //console.log('something silly');
+       //console.log(req.user);
         res.render('profile.ejs', {user : req.user, songs:req.user.songs});
     });
 
@@ -248,7 +248,7 @@ app.post('/saveRecord', isLoggedIn, (req,res) =>
 
     let song = new Song(req.body);
 
-    song['createdBy'] = req.user._id;
+    song['createdBy'] = req.user.name;
 
     song.save();
 
