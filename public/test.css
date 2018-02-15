@@ -119,6 +119,26 @@ canvas{
 	animation: increaseFont 1s forwards;
 }
 
+.jamNav{
+		display: inline;
+	}
+
+	.prof{
+		display: inline-block;
+	}
+
+	.navBtn{
+		margin-bottom: 10px;
+	}
+
+.profileInfo{
+	padding-left: 10px;
+}
+
+.jamHeader{
+	display: inline;
+}	
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px){
 	.containerLogin, .containerIndex{
 		margin-top: 40%;
@@ -193,23 +213,13 @@ canvas{
 
 	.jamHeader{
 		font-size: 36px;
-		display: inline;
+		
 	}
 
 	#songs{
 		font-size: 50px;
 	}
 
-	.jamNav{
-		display: inline;
-	}
 
-	.prof{
-		display: inline-block;
-	}
-
-	.navBtn{
-		margin-bottom: 10px;
-	}
 
 }

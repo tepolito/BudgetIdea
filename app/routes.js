@@ -248,7 +248,7 @@ app.post('/saveRecord', isLoggedIn, (req,res) =>
 
     let song = new Song(req.body);
 
-    song['createdBy'] = req.user.name;
+    song['createdBy'] = req.user.local.email;
 
     song.save();
 
