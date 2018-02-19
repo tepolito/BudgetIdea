@@ -8,7 +8,9 @@ var songSchema = mongoose.Schema({
 
     song:      Array,
 
-    createdBy: String
+    createdBy: String,
+
+    date:      Number
 
 });
 

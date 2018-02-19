@@ -25,7 +25,7 @@ module.exports = function(app, passport) {
     app.get('/profile', isLoggedIn, function(req, res) {
         //console.log('something silly');
        //console.log(req.user);
-        res.render('profile.ejs', {user : req.user, songs:req.user.songs});
+        res.render('profile.ejs', {user : req.user, songs:req.user.songs.reverse()});
     });
 
     // LOGOUT ==============================
@@ -228,7 +228,7 @@ app.post('/jam', isLoggedIn, (req,res) =>
     })
 })
 
-app.get('/newJam', (req,res) => 
+app.get('/newJam', isLoggedIn, (req,res) => 
 {
     User.find().exec().then(users =>  
     {
@@ -250,13 +250,15 @@ app.post('/saveRecord', isLoggedIn, (req,res) =>
 
     song['createdBy'] = req.user.local.email;
 
+    song['date'] =  Date.now();
+
     song.save();
 
 })
 
-app.get("/allSongs", (req,res)=>
+app.get("/allSongs", isLoggedIn, (req,res)=>
 {
-    Song.find().exec().then(songs =>  
+    Song.find().sort({date:-1}).exec().then(songs =>  
     {
         console.log(songs);
         res.render('allSongs.ejs', {songs:songs});   
